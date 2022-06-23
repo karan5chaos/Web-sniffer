@@ -207,5 +207,10 @@ namespace Searcher_A
             
             }
         }
+
+        private void oflinePagesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Offline_pages().Show();
+        }
     }
 }

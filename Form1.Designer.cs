@@ -372,6 +372,7 @@ namespace Searcher_A
             this.oflinePagesToolStripMenuItem.Name = "oflinePagesToolStripMenuItem";
             this.oflinePagesToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
             this.oflinePagesToolStripMenuItem.Text = "Ofline pages";
+            this.oflinePagesToolStripMenuItem.Click += new System.EventHandler(this.oflinePagesToolStripMenuItem_Click);
             // 
             // panel1
             // 
