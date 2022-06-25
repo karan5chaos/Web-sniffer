@@ -69,5 +69,14 @@ namespace Searcher_A.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to www.xda.com.
+        /// </summary>
+        internal static string XDA {
+            get {
+                return ResourceManager.GetString("XDA", resourceCulture);
+            }
+        }
     }
 }

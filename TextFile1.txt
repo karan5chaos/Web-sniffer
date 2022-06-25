@@ -1,0 +1,10 @@
+﻿Wikipedia,https://en.wikipedia.org/wiki/*query*
+Scholarpedia,http://www.scholarpedia.org/w/index.php?search=*query*
+Citizendium,https://citizendium.org/wiki/index.php?search=*query*
+Metacademy,https://metacademy.org/search?q=*query*
+Britannica,https://www.britannica.com/search?query=*query*
+Wiktionary,https://en.wiktionary.org/wiki/*query*
+Wikidata,https://www.wikidata.org/w/index.php?search=*query*&ns0=1&ns120=1
+Infogalactic,https://infogalactic.com/info/*query*
+Encyclopedia,https://www.encyclopedia.com/gsearch?q=*query*
+Youtube,https://www.youtube.com/results?search_query=*query*

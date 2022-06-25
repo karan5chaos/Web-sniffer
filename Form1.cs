@@ -3,6 +3,7 @@ using CefSharp.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -30,50 +31,29 @@ namespace Searcher_A
         string tab_name = "";
         string prim_path = "C:/EZ-5/";
 
-        string wikiurl;
-        string schurl;
-        string cturl;
-        string metaurl;
-        string briturl;
-        string wikitionaryurl;
-        string wikidataurl;
-        string infogalacticurl;
-        string encyclopediaurl;
-        string youurl;
-
         private void button1_Click(object sender, EventArgs e)
         {
 
 
 
-            //wikiurl = ("https://en.wikipedia.org/wiki/" + query);
-            //schurl = ("http://www.scholarpedia.org/w/index.php?search=" + query);
-            //cturl = ("https://citizendium.org/wiki/index.php?search=" + query);
-            //metaurl = ("https://metacademy.org/search?q=" + query);
-            //briturl = ("https://www.britannica.com/search?query=" + query);
-            //wikitionaryurl = ("https://en.wiktionary.org/wiki/" + query);
-            //wikidataurl = ("https://www.wikidata.org/w/index.php?search=" + query + "&ns0=1&ns120=1");
-            //infogalacticurl = ("https://infogalactic.com/info/"+ query);
-            //encyclopediaurl = "https://www.encyclopedia.com/gsearch?q=" + query;
-            //youurl = "https://www.youtube.com/results?search_query=" + query;
+
 
             tab_name = tabControl1.SelectedTab.Text;
 
-            chromiumWebBrowser1.Load(chromiumWebBrowser1.Tag.ToString() + query);
-            Scholarpedia_wb.LoadUrlAsync(Scholarpedia_wb.Tag.ToString() + query);
-            ctwb.LoadUrlAsync(ctwb.Tag.ToString() + query);
-            metawb.LoadUrlAsync(metawb.Tag.ToString() + query);
-            britwb.LoadUrlAsync(britwb.Tag.ToString() + query);
-            wiktionarywb.LoadUrlAsync(wiktionarywb.Tag.ToString() + query);
-            wikidatawb.LoadUrlAsync(wikidatawb.Tag.ToString() + query + "&ns0=1&ns120=1");
-            infogalacticwb.LoadUrlAsync(infogalacticwb.Tag.ToString() + query);
-            enwb.LoadUrlAsync(enwb.Tag.ToString() + query);
-            youwb.LoadUrlAsync(youwb.Tag.ToString() + query);
 
+            foreach (TabPage page in tabControl1.TabPages)
+            {
+                foreach (Control control in page.Controls)
+                {
+                    ChromiumWebBrowser browser = (ChromiumWebBrowser)control;
 
-            is_loaded = true;
-
-
+                    if (browser.Tag.ToString().Contains("*query*"))
+                    {
+                        string corrected_link = browser.Tag.ToString().Replace("*query*", query);
+                        browser.Load(corrected_link);
+                    }
+                }
+            }
         }
 
         
@@ -81,17 +61,35 @@ namespace Searcher_A
         private void Form1_Load(object sender, EventArgs e)
         {
             checkBox1.Checked = Properties.Settings.Default.Unload_on_idle;
-            
+            load_tabs();
         }
 
-        private void Scholarpedia_wb_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)
+
+        void load_tabs()
         {
+            foreach (string line in File.ReadAllLines(@"C:\Users\Karan\source\repos\Searcher_A\TextFile1.txt"))
+            {
 
+                var split = line.Split(',');
+
+                TabPage page = new TabPage();
+                page.Name = split[0] + "tab";
+                //page.Tag = split[1];
+                page.Text = split[0];
+              
+
+                ChromiumWebBrowser browser = new ChromiumWebBrowser();
+                browser.Name = split[0] + "wb";
+                browser.Tag = Tag = split[1];
+
+                browser.Dock = DockStyle.Fill;
+
+                page.Controls.Add(browser);
+                tabControl1.TabPages.Add(page);
+
+                browser.FrameLoadEnd += Common_checkoffline;
+            }
         }
-
-        bool is_loaded = false;
-
-       
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -132,40 +130,6 @@ namespace Searcher_A
             new Offline_pages().Show();
         }
 
-        private void wikipediatab_Leave(object sender, EventArgs e)
-        {
-            //chromiumWebBrowser1.Dispose();
-            chromiumWebBrowser1.LoadUrlAsync("http://www.blankwebsite.com/");
-        }
-
-        private void wikipediatab_Enter(object sender, EventArgs e)
-        {
-            string wikiurl = ("https://en.wikipedia.org/wiki/" + query);
-            chromiumWebBrowser1.LoadUrlAsync(wikiurl);
-            //chromiumWebBrowser1.ResumeLayout();
-        }
-
-        private void ctwb_Leave(object sender, EventArgs e)
-        {
-            
-        }
-
-
-        //Leave events
-
-
-
-        private void Common_tabLeave(object sender, EventArgs e)
-        {
-            
-        }
-
-
-        private void Common_tabEnter(object sender, EventArgs e)
-        {
-
-           
-        }
 
 
         private void Common_checkoffline(object sender, FrameLoadEndEventArgs e)
@@ -210,15 +174,8 @@ namespace Searcher_A
 
                 foreach (ChromiumWebBrowser browser in tabControl.SelectedTab.Controls)
                 {
-                    if (browser.Name == "wikidatawb")
-                    {
-                        browser.LoadUrlAsync(browser.Tag.ToString() + query + "&ns0=1&ns120=1");
-                    }
-                    else
-                    {
-                        browser.LoadUrlAsync(browser.Tag.ToString() + query);
-                    }
 
+                        browser.LoadUrlAsync(browser.Tag.ToString().Replace("*query*",query));
                 }
 
             }

@@ -32,26 +32,6 @@ namespace Searcher_A
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.wikipediatab = new System.Windows.Forms.TabPage();
-            this.chromiumWebBrowser1 = new CefSharp.WinForms.ChromiumWebBrowser();
-            this.schpediatab = new System.Windows.Forms.TabPage();
-            this.Scholarpedia_wb = new CefSharp.WinForms.ChromiumWebBrowser();
-            this.citendiumtab = new System.Windows.Forms.TabPage();
-            this.ctwb = new CefSharp.WinForms.ChromiumWebBrowser();
-            this.metatab = new System.Windows.Forms.TabPage();
-            this.metawb = new CefSharp.WinForms.ChromiumWebBrowser();
-            this.brittab = new System.Windows.Forms.TabPage();
-            this.britwb = new CefSharp.WinForms.ChromiumWebBrowser();
-            this.wiktionarytab = new System.Windows.Forms.TabPage();
-            this.wiktionarywb = new CefSharp.WinForms.ChromiumWebBrowser();
-            this.wikidatatab = new System.Windows.Forms.TabPage();
-            this.wikidatawb = new CefSharp.WinForms.ChromiumWebBrowser();
-            this.infotab = new System.Windows.Forms.TabPage();
-            this.infogalacticwb = new CefSharp.WinForms.ChromiumWebBrowser();
-            this.entab = new System.Windows.Forms.TabPage();
-            this.enwb = new CefSharp.WinForms.ChromiumWebBrowser();
-            this.youtab = new System.Windows.Forms.TabPage();
-            this.youwb = new CefSharp.WinForms.ChromiumWebBrowser();
             this.button1 = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -62,17 +42,6 @@ namespace Searcher_A
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveForOfflineUseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.tabControl1.SuspendLayout();
-            this.wikipediatab.SuspendLayout();
-            this.schpediatab.SuspendLayout();
-            this.citendiumtab.SuspendLayout();
-            this.metatab.SuspendLayout();
-            this.brittab.SuspendLayout();
-            this.wiktionarytab.SuspendLayout();
-            this.wikidatatab.SuspendLayout();
-            this.infotab.SuspendLayout();
-            this.entab.SuspendLayout();
-            this.youtab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -102,16 +71,6 @@ namespace Searcher_A
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.wikipediatab);
-            this.tabControl1.Controls.Add(this.schpediatab);
-            this.tabControl1.Controls.Add(this.citendiumtab);
-            this.tabControl1.Controls.Add(this.metatab);
-            this.tabControl1.Controls.Add(this.brittab);
-            this.tabControl1.Controls.Add(this.wiktionarytab);
-            this.tabControl1.Controls.Add(this.wikidatatab);
-            this.tabControl1.Controls.Add(this.infotab);
-            this.tabControl1.Controls.Add(this.entab);
-            this.tabControl1.Controls.Add(this.youtab);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -121,241 +80,6 @@ namespace Searcher_A
             this.tabControl1.TabIndex = 2;
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             this.tabControl1.Deselected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Deselected);
-            // 
-            // wikipediatab
-            // 
-            this.wikipediatab.Controls.Add(this.chromiumWebBrowser1);
-            this.wikipediatab.Location = new System.Drawing.Point(4, 22);
-            this.wikipediatab.Name = "wikipediatab";
-            this.wikipediatab.Padding = new System.Windows.Forms.Padding(3);
-            this.wikipediatab.Size = new System.Drawing.Size(792, 328);
-            this.wikipediatab.TabIndex = 0;
-            this.wikipediatab.Tag = "";
-            this.wikipediatab.Text = "Wikipedia";
-            this.wikipediatab.UseVisualStyleBackColor = true;
-            this.wikipediatab.Enter += new System.EventHandler(this.Common_tabEnter);
-            this.wikipediatab.Leave += new System.EventHandler(this.Common_tabLeave);
-            // 
-            // chromiumWebBrowser1
-            // 
-            this.chromiumWebBrowser1.ActivateBrowserOnCreation = false;
-            this.chromiumWebBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chromiumWebBrowser1.Location = new System.Drawing.Point(3, 3);
-            this.chromiumWebBrowser1.Name = "chromiumWebBrowser1";
-            this.chromiumWebBrowser1.Size = new System.Drawing.Size(786, 322);
-            this.chromiumWebBrowser1.TabIndex = 0;
-            this.chromiumWebBrowser1.Tag = "https://en.wikipedia.org/wiki/";
-            this.chromiumWebBrowser1.FrameLoadEnd += new System.EventHandler<CefSharp.FrameLoadEndEventArgs>(this.Common_checkoffline);
-            // 
-            // schpediatab
-            // 
-            this.schpediatab.Controls.Add(this.Scholarpedia_wb);
-            this.schpediatab.Location = new System.Drawing.Point(4, 22);
-            this.schpediatab.Name = "schpediatab";
-            this.schpediatab.Padding = new System.Windows.Forms.Padding(3);
-            this.schpediatab.Size = new System.Drawing.Size(792, 328);
-            this.schpediatab.TabIndex = 1;
-            this.schpediatab.Tag = "http://www.scholarpedia.org/w/index.php?search=";
-            this.schpediatab.Text = "Scholarpedia";
-            this.schpediatab.UseVisualStyleBackColor = true;
-            this.schpediatab.Enter += new System.EventHandler(this.Common_tabEnter);
-            this.schpediatab.Leave += new System.EventHandler(this.Common_tabLeave);
-            // 
-            // Scholarpedia_wb
-            // 
-            this.Scholarpedia_wb.ActivateBrowserOnCreation = false;
-            this.Scholarpedia_wb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Scholarpedia_wb.Location = new System.Drawing.Point(3, 3);
-            this.Scholarpedia_wb.Name = "Scholarpedia_wb";
-            this.Scholarpedia_wb.Size = new System.Drawing.Size(786, 322);
-            this.Scholarpedia_wb.TabIndex = 0;
-            this.Scholarpedia_wb.Tag = "http://www.scholarpedia.org/w/index.php?search=";
-            // 
-            // citendiumtab
-            // 
-            this.citendiumtab.Controls.Add(this.ctwb);
-            this.citendiumtab.Location = new System.Drawing.Point(4, 22);
-            this.citendiumtab.Name = "citendiumtab";
-            this.citendiumtab.Padding = new System.Windows.Forms.Padding(3);
-            this.citendiumtab.Size = new System.Drawing.Size(792, 328);
-            this.citendiumtab.TabIndex = 2;
-            this.citendiumtab.Text = "Citendium";
-            this.citendiumtab.UseVisualStyleBackColor = true;
-            this.citendiumtab.Enter += new System.EventHandler(this.Common_tabEnter);
-            this.citendiumtab.Leave += new System.EventHandler(this.Common_tabLeave);
-            // 
-            // ctwb
-            // 
-            this.ctwb.ActivateBrowserOnCreation = false;
-            this.ctwb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctwb.Location = new System.Drawing.Point(3, 3);
-            this.ctwb.Name = "ctwb";
-            this.ctwb.Size = new System.Drawing.Size(786, 322);
-            this.ctwb.TabIndex = 0;
-            this.ctwb.Tag = "https://citizendium.org/wiki/index.php?search=";
-            this.ctwb.Leave += new System.EventHandler(this.ctwb_Leave);
-            // 
-            // metatab
-            // 
-            this.metatab.Controls.Add(this.metawb);
-            this.metatab.Location = new System.Drawing.Point(4, 22);
-            this.metatab.Name = "metatab";
-            this.metatab.Padding = new System.Windows.Forms.Padding(3);
-            this.metatab.Size = new System.Drawing.Size(792, 328);
-            this.metatab.TabIndex = 3;
-            this.metatab.Text = "Metacademy";
-            this.metatab.UseVisualStyleBackColor = true;
-            this.metatab.Enter += new System.EventHandler(this.Common_tabEnter);
-            this.metatab.Leave += new System.EventHandler(this.Common_tabLeave);
-            // 
-            // metawb
-            // 
-            this.metawb.ActivateBrowserOnCreation = false;
-            this.metawb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metawb.Location = new System.Drawing.Point(3, 3);
-            this.metawb.Name = "metawb";
-            this.metawb.Size = new System.Drawing.Size(786, 322);
-            this.metawb.TabIndex = 0;
-            this.metawb.Tag = "https://metacademy.org/search?q=";
-            // 
-            // brittab
-            // 
-            this.brittab.Controls.Add(this.britwb);
-            this.brittab.Location = new System.Drawing.Point(4, 22);
-            this.brittab.Name = "brittab";
-            this.brittab.Padding = new System.Windows.Forms.Padding(3);
-            this.brittab.Size = new System.Drawing.Size(792, 328);
-            this.brittab.TabIndex = 4;
-            this.brittab.Text = "Britannica";
-            this.brittab.UseVisualStyleBackColor = true;
-            this.brittab.Enter += new System.EventHandler(this.Common_tabEnter);
-            this.brittab.Leave += new System.EventHandler(this.Common_tabLeave);
-            // 
-            // britwb
-            // 
-            this.britwb.ActivateBrowserOnCreation = false;
-            this.britwb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.britwb.Location = new System.Drawing.Point(3, 3);
-            this.britwb.Name = "britwb";
-            this.britwb.Size = new System.Drawing.Size(786, 322);
-            this.britwb.TabIndex = 0;
-            this.britwb.Tag = "https://www.britannica.com/search?query=";
-            this.britwb.FrameLoadEnd += new System.EventHandler<CefSharp.FrameLoadEndEventArgs>(this.Common_checkoffline);
-            // 
-            // wiktionarytab
-            // 
-            this.wiktionarytab.Controls.Add(this.wiktionarywb);
-            this.wiktionarytab.Location = new System.Drawing.Point(4, 22);
-            this.wiktionarytab.Name = "wiktionarytab";
-            this.wiktionarytab.Padding = new System.Windows.Forms.Padding(3);
-            this.wiktionarytab.Size = new System.Drawing.Size(792, 328);
-            this.wiktionarytab.TabIndex = 5;
-            this.wiktionarytab.Text = "Wiktionary";
-            this.wiktionarytab.UseVisualStyleBackColor = true;
-            this.wiktionarytab.Enter += new System.EventHandler(this.Common_tabEnter);
-            this.wiktionarytab.Leave += new System.EventHandler(this.Common_tabLeave);
-            // 
-            // wiktionarywb
-            // 
-            this.wiktionarywb.ActivateBrowserOnCreation = false;
-            this.wiktionarywb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wiktionarywb.Location = new System.Drawing.Point(3, 3);
-            this.wiktionarywb.Name = "wiktionarywb";
-            this.wiktionarywb.Size = new System.Drawing.Size(786, 322);
-            this.wiktionarywb.TabIndex = 0;
-            this.wiktionarywb.Tag = "https://en.wiktionary.org/wiki/";
-            // 
-            // wikidatatab
-            // 
-            this.wikidatatab.Controls.Add(this.wikidatawb);
-            this.wikidatatab.Location = new System.Drawing.Point(4, 22);
-            this.wikidatatab.Name = "wikidatatab";
-            this.wikidatatab.Padding = new System.Windows.Forms.Padding(3);
-            this.wikidatatab.Size = new System.Drawing.Size(792, 328);
-            this.wikidatatab.TabIndex = 6;
-            this.wikidatatab.Text = "Wikidata";
-            this.wikidatatab.UseVisualStyleBackColor = true;
-            this.wikidatatab.Enter += new System.EventHandler(this.Common_tabEnter);
-            this.wikidatatab.Leave += new System.EventHandler(this.Common_tabLeave);
-            // 
-            // wikidatawb
-            // 
-            this.wikidatawb.ActivateBrowserOnCreation = false;
-            this.wikidatawb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wikidatawb.Location = new System.Drawing.Point(3, 3);
-            this.wikidatawb.Name = "wikidatawb";
-            this.wikidatawb.Size = new System.Drawing.Size(786, 322);
-            this.wikidatawb.TabIndex = 0;
-            this.wikidatawb.Tag = "https://www.wikidata.org/w/index.php?search=";
-            // 
-            // infotab
-            // 
-            this.infotab.Controls.Add(this.infogalacticwb);
-            this.infotab.Location = new System.Drawing.Point(4, 22);
-            this.infotab.Name = "infotab";
-            this.infotab.Padding = new System.Windows.Forms.Padding(3);
-            this.infotab.Size = new System.Drawing.Size(792, 328);
-            this.infotab.TabIndex = 7;
-            this.infotab.Text = "Infogalactic";
-            this.infotab.UseVisualStyleBackColor = true;
-            this.infotab.Enter += new System.EventHandler(this.Common_tabEnter);
-            this.infotab.Leave += new System.EventHandler(this.Common_tabLeave);
-            // 
-            // infogalacticwb
-            // 
-            this.infogalacticwb.ActivateBrowserOnCreation = false;
-            this.infogalacticwb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.infogalacticwb.Location = new System.Drawing.Point(3, 3);
-            this.infogalacticwb.Name = "infogalacticwb";
-            this.infogalacticwb.Size = new System.Drawing.Size(786, 322);
-            this.infogalacticwb.TabIndex = 0;
-            this.infogalacticwb.Tag = "https://infogalactic.com/info/";
-            // 
-            // entab
-            // 
-            this.entab.Controls.Add(this.enwb);
-            this.entab.Location = new System.Drawing.Point(4, 22);
-            this.entab.Name = "entab";
-            this.entab.Padding = new System.Windows.Forms.Padding(3);
-            this.entab.Size = new System.Drawing.Size(792, 328);
-            this.entab.TabIndex = 8;
-            this.entab.Text = "Encyclopedia";
-            this.entab.UseVisualStyleBackColor = true;
-            this.entab.Enter += new System.EventHandler(this.Common_tabEnter);
-            this.entab.Leave += new System.EventHandler(this.Common_tabLeave);
-            // 
-            // enwb
-            // 
-            this.enwb.ActivateBrowserOnCreation = false;
-            this.enwb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.enwb.Location = new System.Drawing.Point(3, 3);
-            this.enwb.Name = "enwb";
-            this.enwb.Size = new System.Drawing.Size(786, 322);
-            this.enwb.TabIndex = 0;
-            this.enwb.Tag = "https://www.encyclopedia.com/gsearch?q=";
-            // 
-            // youtab
-            // 
-            this.youtab.Controls.Add(this.youwb);
-            this.youtab.Location = new System.Drawing.Point(4, 22);
-            this.youtab.Name = "youtab";
-            this.youtab.Padding = new System.Windows.Forms.Padding(3);
-            this.youtab.Size = new System.Drawing.Size(792, 328);
-            this.youtab.TabIndex = 9;
-            this.youtab.Text = "YouTube";
-            this.youtab.UseVisualStyleBackColor = true;
-            this.youtab.Enter += new System.EventHandler(this.Common_tabEnter);
-            this.youtab.Leave += new System.EventHandler(this.Common_tabLeave);
-            // 
-            // youwb
-            // 
-            this.youwb.ActivateBrowserOnCreation = false;
-            this.youwb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.youwb.Location = new System.Drawing.Point(3, 3);
-            this.youwb.Name = "youwb";
-            this.youwb.Size = new System.Drawing.Size(786, 322);
-            this.youwb.TabIndex = 0;
-            this.youwb.Tag = "https://www.youtube.com/results?search_query=";
             // 
             // button1
             // 
@@ -474,17 +198,6 @@ namespace Searcher_A
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.tabControl1.ResumeLayout(false);
-            this.wikipediatab.ResumeLayout(false);
-            this.schpediatab.ResumeLayout(false);
-            this.citendiumtab.ResumeLayout(false);
-            this.metatab.ResumeLayout(false);
-            this.brittab.ResumeLayout(false);
-            this.wiktionarytab.ResumeLayout(false);
-            this.wikidatatab.ResumeLayout(false);
-            this.infotab.ResumeLayout(false);
-            this.entab.ResumeLayout(false);
-            this.youtab.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -505,34 +218,14 @@ namespace Searcher_A
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage schpediatab;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.TabPage wikipediatab;
-        private CefSharp.WinForms.ChromiumWebBrowser chromiumWebBrowser1;
-        private CefSharp.WinForms.ChromiumWebBrowser Scholarpedia_wb;
-        private System.Windows.Forms.TabPage citendiumtab;
-        private CefSharp.WinForms.ChromiumWebBrowser ctwb;
-        private System.Windows.Forms.TabPage metatab;
-        private CefSharp.WinForms.ChromiumWebBrowser metawb;
-        private System.Windows.Forms.TabPage brittab;
-        private CefSharp.WinForms.ChromiumWebBrowser britwb;
-        private System.Windows.Forms.TabPage wiktionarytab;
-        private CefSharp.WinForms.ChromiumWebBrowser wiktionarywb;
-        private System.Windows.Forms.TabPage wikidatatab;
-        private CefSharp.WinForms.ChromiumWebBrowser wikidatawb;
-        private System.Windows.Forms.TabPage infotab;
-        private CefSharp.WinForms.ChromiumWebBrowser infogalacticwb;
-        private System.Windows.Forms.TabPage entab;
-        private CefSharp.WinForms.ChromiumWebBrowser enwb;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel status;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem oflinePagesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TabPage youtab;
-        private CefSharp.WinForms.ChromiumWebBrowser youwb;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.ToolStripMenuItem saveForOfflineUseToolStripMenuItem;
     }
