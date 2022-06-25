@@ -40,7 +40,9 @@ namespace Searcher_A
             string wikidataurl = ("https://www.wikidata.org/w/index.php?search=" + query + "&ns0=1&ns120=1");
             string infogalacticurl = ("https://infogalactic.com/info/"+ query);
             string encyclopediaurl = "https://www.encyclopedia.com/gsearch?q=" + query;
+            string youurl = "https://www.youtube.com/results?search_query=" + query;
 
+        
 
             chromiumWebBrowser1.LoadUrlAsync(wikiurl);
             Scholarpedia_wb.LoadUrlAsync(schurl);
@@ -51,6 +53,8 @@ namespace Searcher_A
             wikidatawb.LoadUrlAsync(wikidataurl);
             infogalacticwb.LoadUrlAsync(infogalacticurl);
             enwb.LoadUrlAsync(encyclopediaurl);
+            youwb.LoadUrlAsync(youurl);
+
             // Scholarpedia_wb.WaitForInitialLoadAsync();
 
 
