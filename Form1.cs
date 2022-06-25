@@ -30,6 +30,7 @@ namespace Searcher_A
         string query = "";
         string tab_name = "";
         string prim_path = "C:/EZ-5/";
+        string setting_path = @"C:\Users\Karan\source\repos\Searcher_A\TextFile1.txt";
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -60,34 +61,47 @@ namespace Searcher_A
 
         private void Form1_Load(object sender, EventArgs e)
         {
+           // fileSystemWatcher1.Path = setting_path;
+
             checkBox1.Checked = Properties.Settings.Default.Unload_on_idle;
             load_tabs();
         }
 
 
+        public static void UnloadTabpage(TabControl tabcontrol)
+        {
+            while (tabcontrol.Controls.Count > 0) tabcontrol.Controls[0].Dispose();
+        }
+
         void load_tabs()
         {
-            foreach (string line in File.ReadAllLines(@"C:\Users\Karan\source\repos\Searcher_A\TextFile1.txt"))
-            {
 
+
+            UnloadTabpage(tabControl1);
+           
+            foreach (string line in File.ReadAllLines(setting_path))
+            {
                 var split = line.Split(',');
 
-                TabPage page = new TabPage();
-                page.Name = split[0] + "tab";
-                //page.Tag = split[1];
-                page.Text = split[0];
-              
+                if (split[2]=="true")
+                {
+                    TabPage page = new TabPage();
+                    page.Name = split[0] + "tab";
+                    //page.Tag = split[1];
+                    page.Text = split[0];
 
-                ChromiumWebBrowser browser = new ChromiumWebBrowser();
-                browser.Name = split[0] + "wb";
-                browser.Tag = Tag = split[1];
 
-                browser.Dock = DockStyle.Fill;
+                    ChromiumWebBrowser browser = new ChromiumWebBrowser();
+                    browser.Name = split[0] + "wb";
+                    browser.Tag = Tag = split[1];
 
-                page.Controls.Add(browser);
-                tabControl1.TabPages.Add(page);
+                    browser.Dock = DockStyle.Fill;
 
-                browser.FrameLoadEnd += Common_checkoffline;
+                    page.Controls.Add(browser);
+                    tabControl1.TabPages.Add(page);
+
+                    browser.FrameLoadEnd += Common_checkoffline;
+                }
             }
         }
 
@@ -192,6 +206,16 @@ namespace Searcher_A
                     browser.LoadUrlAsync("http://www.blankwebsite.com/");
                 }
             }
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Settings_page().Show();
+        }
+
+        private void fileSystemWatcher1_Changed(object sender, FileSystemEventArgs e)
+        {
+           
         }
     }
 }
