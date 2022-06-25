@@ -18,11 +18,13 @@ namespace Searcher_A
             InitializeComponent();
         }
 
-        string setting_path = @"C:\Users\Karan\source\repos\Searcher_A\TextFile1.txt";
+
+
+        string setting_path = track_change.link_path;
 
         private void Settings_page_Load(object sender, EventArgs e)
         {
-            
+            checkBox1.Checked = Properties.Settings.Default.Unload_on_idle;
             foreach (string line in File.ReadAllLines(setting_path))
             {
 
@@ -39,6 +41,8 @@ namespace Searcher_A
 
         }
 
+
+        bool ischanged = false;
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1.Rows.Count > 0 && e.ColumnIndex==0)
@@ -70,7 +74,28 @@ namespace Searcher_A
 
                 }
 
+                ischanged = true;
+
+
+               
             }
+        }
+
+        private void Settings_page_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            track_change.changed = ischanged;
+        }
+
+        private void addNewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Add_new_website().ShowDialog();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Unload_on_idle = Convert.ToBoolean(checkBox1.CheckState);
+            Properties.Settings.Default.Save();
+            Properties.Settings.Default.Reload();
         }
     }
 }

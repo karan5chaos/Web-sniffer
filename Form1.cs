@@ -24,13 +24,16 @@ namespace Searcher_A
 
             Cef.Initialize(settings);
 
+
+
             InitializeComponent();
         }
 
         string query = "";
         string tab_name = "";
-        string prim_path = "C:/EZ-5/";
-        string setting_path = @"C:\Users\Karan\source\repos\Searcher_A\TextFile1.txt";
+        string prim_path = Properties.Settings.Default.save_path;
+        string setting_path = track_change.link_path;
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -57,14 +60,41 @@ namespace Searcher_A
             }
         }
 
-        
+        void create_folder()
+        {
+            if (!Directory.Exists(Properties.Settings.Default.save_path))
+            {
+                Directory.CreateDirectory(Properties.Settings.Default.save_path);
+
+            }
+
+            if (!Directory.Exists(Properties.Settings.Default.save_path + "links"))
+            {
+                Directory.CreateDirectory(Properties.Settings.Default.save_path + "/links");
+
+                if (!File.Exists(track_change.link_path))
+                {
+                    File.Create(track_change.link_path);
+
+                }
+            }
+
+            if (!Directory.Exists(Properties.Settings.Default.save_path + "pages"))
+                {
+                    Directory.CreateDirectory(Properties.Settings.Default.save_path + "/pages");
+                }
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+            create_folder();
            // fileSystemWatcher1.Path = setting_path;
 
-            checkBox1.Checked = Properties.Settings.Default.Unload_on_idle;
+           // checkBox1.Checked = Properties.Settings.Default.Unload_on_idle;
             load_tabs();
+
+            timer1.Start();
         }
 
 
@@ -76,8 +106,9 @@ namespace Searcher_A
         void load_tabs()
         {
 
-
+            tabControl1.Hide();
             UnloadTabpage(tabControl1);
+            tabControl1.Show();
            
             foreach (string line in File.ReadAllLines(setting_path))
             {
@@ -103,23 +134,13 @@ namespace Searcher_A
                     browser.FrameLoadEnd += Common_checkoffline;
                 }
             }
+           
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
 
-            ChromiumWebBrowser browser = null;
-            string path = "";
-          
-            foreach (Control control in tabControl1.SelectedTab.Controls)
-            {
-                browser = (ChromiumWebBrowser)control;
-                path = prim_path + textBox1.Text + "_"+tabControl1.SelectedTab.Text+"_page.pdf";
-
-            }
-
-            PrintToPdfAsync(path,browser);
-            status.Text = "Page downloaded for offline use..";
+           
 
         }
 
@@ -152,12 +173,12 @@ namespace Searcher_A
 
             if (File.Exists(name))
             {
-                saveForOfflineUseToolStripMenuItem.Text = "Offline page available!";
+                button4.Text = "Offline page available!";
 
             }
             else
             {
-                saveForOfflineUseToolStripMenuItem.Text = "Save for offline use";
+               // button4.Text = "Save for offline use";
 
             }
         }
@@ -167,9 +188,7 @@ namespace Searcher_A
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.Unload_on_idle = Convert.ToBoolean(checkBox1.CheckState);
-            Properties.Settings.Default.Save();
-            Properties.Settings.Default.Reload();
+           
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -180,42 +199,112 @@ namespace Searcher_A
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
 
-            tab_name = tabControl1.SelectedTab.Text;
-            if (Properties.Settings.Default.Unload_on_idle)
+            if (track_change.changed == false && query!="")
             {
-                TabControl tabControl = sender as TabControl;
-
-
-                foreach (ChromiumWebBrowser browser in tabControl.SelectedTab.Controls)
+                tab_name = tabControl1.SelectedTab.Text;
+                if (Properties.Settings.Default.Unload_on_idle)
                 {
+                    TabControl tabControl = sender as TabControl;
 
-                        browser.LoadUrlAsync(browser.Tag.ToString().Replace("*query*",query));
+
+                    foreach (ChromiumWebBrowser browser in tabControl.SelectedTab.Controls)
+                    {
+
+                        browser.LoadUrlAsync(browser.Tag.ToString().Replace("*query*", query));
+                    }
+
                 }
-
             }
         }
 
         private void tabControl1_Deselected(object sender, TabControlEventArgs e)
         {
+            
             TabControl tabControl = sender as TabControl;
 
-            if (Properties.Settings.Default.Unload_on_idle)
+            try
             {
-                foreach (ChromiumWebBrowser browser in tabControl.SelectedTab.Controls)
+                if (Properties.Settings.Default.Unload_on_idle && track_change.changed==false && query!="")
                 {
-                    browser.LoadUrlAsync("http://www.blankwebsite.com/");
+                    foreach (ChromiumWebBrowser browser in tabControl.SelectedTab.Controls)
+                    {
+                        browser.LoadUrlAsync("http://www.blankwebsite.com/");
+                    }
                 }
             }
+
+            catch
+            { }
         }
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new Settings_page().Show();
+            new Settings_page().ShowDialog();
         }
 
         private void fileSystemWatcher1_Changed(object sender, FileSystemEventArgs e)
         {
            
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (track_change.changed == true)
+            {
+                load_tabs();
+                track_change.changed = false;
+            
+            }
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            foreach (Control control in tabControl1.SelectedTab.Controls)
+            {
+                ChromiumWebBrowser browser = new ChromiumWebBrowser();
+                browser = (ChromiumWebBrowser)control;
+
+                browser.Back();
+            }
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            foreach (Control control in tabControl1.SelectedTab.Controls)
+            {
+                ChromiumWebBrowser browser = new ChromiumWebBrowser();
+                browser = (ChromiumWebBrowser)control;
+
+                browser.Forward();
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            foreach (Control control in tabControl1.SelectedTab.Controls)
+            {
+                ChromiumWebBrowser browser = new ChromiumWebBrowser();
+                browser = (ChromiumWebBrowser)control;
+
+                browser.LoadUrlAsync("http://www.blankwebsite.com/");
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            ChromiumWebBrowser browser = null;
+            string path = "";
+
+            foreach (Control control in tabControl1.SelectedTab.Controls)
+            {
+                browser = (ChromiumWebBrowser)control;
+                path = track_change.pages_path + textBox1.Text + "_" + tabControl1.SelectedTab.Text + "_page.pdf";
+
+            }
+
+            PrintToPdfAsync(path, browser);
+            status.Text = "Page downloaded for offline use..";
         }
     }
 }

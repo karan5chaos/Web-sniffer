@@ -37,13 +37,25 @@ namespace Searcher_A.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Setting {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool changed {
             get {
-                return ((string)(this["Setting"]));
+                return ((bool)(this["changed"]));
             }
             set {
-                this["Setting"] = value;
+                this["changed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:/W_sniffer/")]
+        public string save_path {
+            get {
+                return ((string)(this["save_path"]));
+            }
+            set {
+                this["save_path"] = value;
             }
         }
     }

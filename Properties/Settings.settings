@@ -5,8 +5,11 @@
     <Setting Name="Unload_on_idle" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="Setting" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="changed" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="save_path" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:/W_sniffer/</Value>
     </Setting>
   </Settings>
 </SettingsFile>
