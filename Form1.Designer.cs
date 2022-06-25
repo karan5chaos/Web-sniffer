@@ -50,17 +50,18 @@ namespace Searcher_A
             this.infogalacticwb = new CefSharp.WinForms.ChromiumWebBrowser();
             this.entab = new System.Windows.Forms.TabPage();
             this.enwb = new CefSharp.WinForms.ChromiumWebBrowser();
+            this.youtab = new System.Windows.Forms.TabPage();
+            this.youwb = new CefSharp.WinForms.ChromiumWebBrowser();
             this.button1 = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.button2 = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.oflinePagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveForOfflineUseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.youtab = new System.Windows.Forms.TabPage();
-            this.youwb = new CefSharp.WinForms.ChromiumWebBrowser();
             this.tabControl1.SuspendLayout();
             this.wikipediatab.SuspendLayout();
             this.schpediatab.SuspendLayout();
@@ -71,6 +72,7 @@ namespace Searcher_A
             this.wikidatatab.SuspendLayout();
             this.infotab.SuspendLayout();
             this.entab.SuspendLayout();
+            this.youtab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -78,7 +80,6 @@ namespace Searcher_A
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.youtab.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -96,6 +97,7 @@ namespace Searcher_A
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(360, 21);
             this.textBox1.TabIndex = 0;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
             // tabControl1
@@ -111,12 +113,14 @@ namespace Searcher_A
             this.tabControl1.Controls.Add(this.entab);
             this.tabControl1.Controls.Add(this.youtab);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(800, 354);
             this.tabControl1.TabIndex = 2;
+            this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
+            this.tabControl1.Deselected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Deselected);
             // 
             // wikipediatab
             // 
@@ -126,8 +130,11 @@ namespace Searcher_A
             this.wikipediatab.Padding = new System.Windows.Forms.Padding(3);
             this.wikipediatab.Size = new System.Drawing.Size(792, 328);
             this.wikipediatab.TabIndex = 0;
+            this.wikipediatab.Tag = "";
             this.wikipediatab.Text = "Wikipedia";
             this.wikipediatab.UseVisualStyleBackColor = true;
+            this.wikipediatab.Enter += new System.EventHandler(this.Common_tabEnter);
+            this.wikipediatab.Leave += new System.EventHandler(this.Common_tabLeave);
             // 
             // chromiumWebBrowser1
             // 
@@ -137,6 +144,8 @@ namespace Searcher_A
             this.chromiumWebBrowser1.Name = "chromiumWebBrowser1";
             this.chromiumWebBrowser1.Size = new System.Drawing.Size(786, 322);
             this.chromiumWebBrowser1.TabIndex = 0;
+            this.chromiumWebBrowser1.Tag = "https://en.wikipedia.org/wiki/";
+            this.chromiumWebBrowser1.FrameLoadEnd += new System.EventHandler<CefSharp.FrameLoadEndEventArgs>(this.Common_checkoffline);
             // 
             // schpediatab
             // 
@@ -146,8 +155,11 @@ namespace Searcher_A
             this.schpediatab.Padding = new System.Windows.Forms.Padding(3);
             this.schpediatab.Size = new System.Drawing.Size(792, 328);
             this.schpediatab.TabIndex = 1;
+            this.schpediatab.Tag = "http://www.scholarpedia.org/w/index.php?search=";
             this.schpediatab.Text = "Scholarpedia";
             this.schpediatab.UseVisualStyleBackColor = true;
+            this.schpediatab.Enter += new System.EventHandler(this.Common_tabEnter);
+            this.schpediatab.Leave += new System.EventHandler(this.Common_tabLeave);
             // 
             // Scholarpedia_wb
             // 
@@ -157,8 +169,7 @@ namespace Searcher_A
             this.Scholarpedia_wb.Name = "Scholarpedia_wb";
             this.Scholarpedia_wb.Size = new System.Drawing.Size(786, 322);
             this.Scholarpedia_wb.TabIndex = 0;
-            this.Scholarpedia_wb.FrameLoadEnd += new System.EventHandler<CefSharp.FrameLoadEndEventArgs>(this.Scholarpedia_wb_FrameLoadEnd);
-            this.Scholarpedia_wb.LoadingStateChanged += new System.EventHandler<CefSharp.LoadingStateChangedEventArgs>(this.Scholarpedia_wb_LoadingStateChanged);
+            this.Scholarpedia_wb.Tag = "http://www.scholarpedia.org/w/index.php?search=";
             // 
             // citendiumtab
             // 
@@ -170,6 +181,8 @@ namespace Searcher_A
             this.citendiumtab.TabIndex = 2;
             this.citendiumtab.Text = "Citendium";
             this.citendiumtab.UseVisualStyleBackColor = true;
+            this.citendiumtab.Enter += new System.EventHandler(this.Common_tabEnter);
+            this.citendiumtab.Leave += new System.EventHandler(this.Common_tabLeave);
             // 
             // ctwb
             // 
@@ -179,6 +192,8 @@ namespace Searcher_A
             this.ctwb.Name = "ctwb";
             this.ctwb.Size = new System.Drawing.Size(786, 322);
             this.ctwb.TabIndex = 0;
+            this.ctwb.Tag = "https://citizendium.org/wiki/index.php?search=";
+            this.ctwb.Leave += new System.EventHandler(this.ctwb_Leave);
             // 
             // metatab
             // 
@@ -190,6 +205,8 @@ namespace Searcher_A
             this.metatab.TabIndex = 3;
             this.metatab.Text = "Metacademy";
             this.metatab.UseVisualStyleBackColor = true;
+            this.metatab.Enter += new System.EventHandler(this.Common_tabEnter);
+            this.metatab.Leave += new System.EventHandler(this.Common_tabLeave);
             // 
             // metawb
             // 
@@ -199,6 +216,7 @@ namespace Searcher_A
             this.metawb.Name = "metawb";
             this.metawb.Size = new System.Drawing.Size(786, 322);
             this.metawb.TabIndex = 0;
+            this.metawb.Tag = "https://metacademy.org/search?q=";
             // 
             // brittab
             // 
@@ -210,6 +228,8 @@ namespace Searcher_A
             this.brittab.TabIndex = 4;
             this.brittab.Text = "Britannica";
             this.brittab.UseVisualStyleBackColor = true;
+            this.brittab.Enter += new System.EventHandler(this.Common_tabEnter);
+            this.brittab.Leave += new System.EventHandler(this.Common_tabLeave);
             // 
             // britwb
             // 
@@ -219,6 +239,8 @@ namespace Searcher_A
             this.britwb.Name = "britwb";
             this.britwb.Size = new System.Drawing.Size(786, 322);
             this.britwb.TabIndex = 0;
+            this.britwb.Tag = "https://www.britannica.com/search?query=";
+            this.britwb.FrameLoadEnd += new System.EventHandler<CefSharp.FrameLoadEndEventArgs>(this.Common_checkoffline);
             // 
             // wiktionarytab
             // 
@@ -230,6 +252,8 @@ namespace Searcher_A
             this.wiktionarytab.TabIndex = 5;
             this.wiktionarytab.Text = "Wiktionary";
             this.wiktionarytab.UseVisualStyleBackColor = true;
+            this.wiktionarytab.Enter += new System.EventHandler(this.Common_tabEnter);
+            this.wiktionarytab.Leave += new System.EventHandler(this.Common_tabLeave);
             // 
             // wiktionarywb
             // 
@@ -239,6 +263,7 @@ namespace Searcher_A
             this.wiktionarywb.Name = "wiktionarywb";
             this.wiktionarywb.Size = new System.Drawing.Size(786, 322);
             this.wiktionarywb.TabIndex = 0;
+            this.wiktionarywb.Tag = "https://en.wiktionary.org/wiki/";
             // 
             // wikidatatab
             // 
@@ -250,6 +275,8 @@ namespace Searcher_A
             this.wikidatatab.TabIndex = 6;
             this.wikidatatab.Text = "Wikidata";
             this.wikidatatab.UseVisualStyleBackColor = true;
+            this.wikidatatab.Enter += new System.EventHandler(this.Common_tabEnter);
+            this.wikidatatab.Leave += new System.EventHandler(this.Common_tabLeave);
             // 
             // wikidatawb
             // 
@@ -259,6 +286,7 @@ namespace Searcher_A
             this.wikidatawb.Name = "wikidatawb";
             this.wikidatawb.Size = new System.Drawing.Size(786, 322);
             this.wikidatawb.TabIndex = 0;
+            this.wikidatawb.Tag = "https://www.wikidata.org/w/index.php?search=";
             // 
             // infotab
             // 
@@ -270,6 +298,8 @@ namespace Searcher_A
             this.infotab.TabIndex = 7;
             this.infotab.Text = "Infogalactic";
             this.infotab.UseVisualStyleBackColor = true;
+            this.infotab.Enter += new System.EventHandler(this.Common_tabEnter);
+            this.infotab.Leave += new System.EventHandler(this.Common_tabLeave);
             // 
             // infogalacticwb
             // 
@@ -279,6 +309,7 @@ namespace Searcher_A
             this.infogalacticwb.Name = "infogalacticwb";
             this.infogalacticwb.Size = new System.Drawing.Size(786, 322);
             this.infogalacticwb.TabIndex = 0;
+            this.infogalacticwb.Tag = "https://infogalactic.com/info/";
             // 
             // entab
             // 
@@ -290,6 +321,8 @@ namespace Searcher_A
             this.entab.TabIndex = 8;
             this.entab.Text = "Encyclopedia";
             this.entab.UseVisualStyleBackColor = true;
+            this.entab.Enter += new System.EventHandler(this.Common_tabEnter);
+            this.entab.Leave += new System.EventHandler(this.Common_tabLeave);
             // 
             // enwb
             // 
@@ -299,6 +332,30 @@ namespace Searcher_A
             this.enwb.Name = "enwb";
             this.enwb.Size = new System.Drawing.Size(786, 322);
             this.enwb.TabIndex = 0;
+            this.enwb.Tag = "https://www.encyclopedia.com/gsearch?q=";
+            // 
+            // youtab
+            // 
+            this.youtab.Controls.Add(this.youwb);
+            this.youtab.Location = new System.Drawing.Point(4, 22);
+            this.youtab.Name = "youtab";
+            this.youtab.Padding = new System.Windows.Forms.Padding(3);
+            this.youtab.Size = new System.Drawing.Size(792, 328);
+            this.youtab.TabIndex = 9;
+            this.youtab.Text = "YouTube";
+            this.youtab.UseVisualStyleBackColor = true;
+            this.youtab.Enter += new System.EventHandler(this.Common_tabEnter);
+            this.youtab.Leave += new System.EventHandler(this.Common_tabLeave);
+            // 
+            // youwb
+            // 
+            this.youwb.ActivateBrowserOnCreation = false;
+            this.youwb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.youwb.Location = new System.Drawing.Point(3, 3);
+            this.youwb.Name = "youwb";
+            this.youwb.Size = new System.Drawing.Size(786, 322);
+            this.youwb.TabIndex = 0;
+            this.youwb.Tag = "https://www.youtube.com/results?search_query=";
             // 
             // button1
             // 
@@ -320,7 +377,7 @@ namespace Searcher_A
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.button2);
+            this.splitContainer1.Panel1.Controls.Add(this.checkBox1);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this.button1);
             this.splitContainer1.Panel1.Controls.Add(this.textBox1);
@@ -332,15 +389,16 @@ namespace Searcher_A
             this.splitContainer1.SplitterDistance = 46;
             this.splitContainer1.TabIndex = 4;
             // 
-            // button2
+            // checkBox1
             // 
-            this.button2.Location = new System.Drawing.Point(537, 13);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(116, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Save for offline use";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(551, 16);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(119, 17);
+            this.checkBox1.TabIndex = 5;
+            this.checkBox1.Text = "Unload page on idle";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // statusStrip1
             // 
@@ -364,7 +422,8 @@ namespace Searcher_A
             this.menuStrip1.Font = new System.Drawing.Font("Calibri", 8.25F);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.oflinePagesToolStripMenuItem,
-            this.settingsToolStripMenuItem});
+            this.settingsToolStripMenuItem,
+            this.saveForOfflineUseToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -384,6 +443,15 @@ namespace Searcher_A
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
+            // saveForOfflineUseToolStripMenuItem
+            // 
+            this.saveForOfflineUseToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.saveForOfflineUseToolStripMenuItem.Image = global::Searcher_A.Properties.Resources.download;
+            this.saveForOfflineUseToolStripMenuItem.Name = "saveForOfflineUseToolStripMenuItem";
+            this.saveForOfflineUseToolStripMenuItem.Size = new System.Drawing.Size(123, 20);
+            this.saveForOfflineUseToolStripMenuItem.Text = "Save for offline use";
+            this.saveForOfflineUseToolStripMenuItem.Click += new System.EventHandler(this.button2_Click);
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.splitContainer1);
@@ -392,26 +460,6 @@ namespace Searcher_A
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 404);
             this.panel1.TabIndex = 7;
-            // 
-            // youtab
-            // 
-            this.youtab.Controls.Add(this.youwb);
-            this.youtab.Location = new System.Drawing.Point(4, 22);
-            this.youtab.Name = "youtab";
-            this.youtab.Padding = new System.Windows.Forms.Padding(3);
-            this.youtab.Size = new System.Drawing.Size(792, 328);
-            this.youtab.TabIndex = 9;
-            this.youtab.Text = "YouTube";
-            this.youtab.UseVisualStyleBackColor = true;
-            // 
-            // youwb
-            // 
-            this.youwb.ActivateBrowserOnCreation = false;
-            this.youwb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.youwb.Location = new System.Drawing.Point(3, 3);
-            this.youwb.Name = "youwb";
-            this.youwb.Size = new System.Drawing.Size(786, 322);
-            this.youwb.TabIndex = 0;
             // 
             // Form1
             // 
@@ -436,6 +484,7 @@ namespace Searcher_A
             this.wikidatatab.ResumeLayout(false);
             this.infotab.ResumeLayout(false);
             this.entab.ResumeLayout(false);
+            this.youtab.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -446,7 +495,6 @@ namespace Searcher_A
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.youtab.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -463,7 +511,6 @@ namespace Searcher_A
         private System.Windows.Forms.TabPage wikipediatab;
         private CefSharp.WinForms.ChromiumWebBrowser chromiumWebBrowser1;
         private CefSharp.WinForms.ChromiumWebBrowser Scholarpedia_wb;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TabPage citendiumtab;
         private CefSharp.WinForms.ChromiumWebBrowser ctwb;
         private System.Windows.Forms.TabPage metatab;
@@ -486,6 +533,8 @@ namespace Searcher_A
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TabPage youtab;
         private CefSharp.WinForms.ChromiumWebBrowser youwb;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.ToolStripMenuItem saveForOfflineUseToolStripMenuItem;
     }
 }
 
