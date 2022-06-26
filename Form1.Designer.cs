@@ -34,9 +34,9 @@ namespace Searcher_A
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.button1 = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.button5 = new System.Windows.Forms.Button();
@@ -49,10 +49,21 @@ namespace Searcher_A
             this.oflinePagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.connectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importExportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importLinksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportLinksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.exportAllOfflinePagesTozipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.saveFileDialog2 = new System.Windows.Forms.SaveFileDialog();
+            this.pdf_exportworker = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -102,20 +113,6 @@ namespace Searcher_A
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             this.tabControl1.Deselected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Deselected);
             // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Image = global::Searcher_A.Properties.Resources.search_field;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(701, 15);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Search";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -151,6 +148,20 @@ namespace Searcher_A
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Search";
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Image = global::Searcher_A.Properties.Resources.search_field;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(701, 15);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Search";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox2
             // 
@@ -268,7 +279,10 @@ namespace Searcher_A
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.oflinePagesToolStripMenuItem,
             this.settingsToolStripMenuItem,
-            this.connectionToolStripMenuItem});
+            this.connectionToolStripMenuItem,
+            this.importExportToolStripMenuItem,
+            this.aboutToolStripMenuItem,
+            this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -300,6 +314,64 @@ namespace Searcher_A
             this.connectionToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
             this.connectionToolStripMenuItem.Text = "Connection";
             // 
+            // importExportToolStripMenuItem
+            // 
+            this.importExportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.importLinksToolStripMenuItem,
+            this.exportLinksToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.exportAllOfflinePagesTozipToolStripMenuItem});
+            this.importExportToolStripMenuItem.Image = global::Searcher_A.Properties.Resources.document_import;
+            this.importExportToolStripMenuItem.Name = "importExportToolStripMenuItem";
+            this.importExportToolStripMenuItem.Size = new System.Drawing.Size(101, 20);
+            this.importExportToolStripMenuItem.Text = "Import/Export";
+            // 
+            // importLinksToolStripMenuItem
+            // 
+            this.importLinksToolStripMenuItem.Image = global::Searcher_A.Properties.Resources.text_imports;
+            this.importLinksToolStripMenuItem.Name = "importLinksToolStripMenuItem";
+            this.importLinksToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.importLinksToolStripMenuItem.Text = "Import Links";
+            this.importLinksToolStripMenuItem.Click += new System.EventHandler(this.importLinksToolStripMenuItem_Click);
+            // 
+            // exportLinksToolStripMenuItem
+            // 
+            this.exportLinksToolStripMenuItem.Image = global::Searcher_A.Properties.Resources.text_exports;
+            this.exportLinksToolStripMenuItem.Name = "exportLinksToolStripMenuItem";
+            this.exportLinksToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.exportLinksToolStripMenuItem.Text = "Export Links";
+            this.exportLinksToolStripMenuItem.Click += new System.EventHandler(this.exportLinksToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(207, 6);
+            // 
+            // exportAllOfflinePagesTozipToolStripMenuItem
+            // 
+            this.exportAllOfflinePagesTozipToolStripMenuItem.Image = global::Searcher_A.Properties.Resources.file_extension_zip;
+            this.exportAllOfflinePagesTozipToolStripMenuItem.Name = "exportAllOfflinePagesTozipToolStripMenuItem";
+            this.exportAllOfflinePagesTozipToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.exportAllOfflinePagesTozipToolStripMenuItem.Text = "Export all offline pages to .zip";
+            this.exportAllOfflinePagesTozipToolStripMenuItem.Click += new System.EventHandler(this.exportAllOfflinePagesTozipToolStripMenuItem_Click);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Image = global::Searcher_A.Properties.Resources.infocard;
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.Image = global::Searcher_A.Properties.Resources.help;
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            this.helpToolStripMenuItem.Visible = false;
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.splitContainer1);
@@ -325,6 +397,33 @@ namespace Searcher_A
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.DefaultExt = "lnks";
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "lnks files (*.lnks)|*.lnks";
+            this.openFileDialog1.Title = "Import Links";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "lnks";
+            this.saveFileDialog1.Filter = "|*lnks";
+            this.saveFileDialog1.Title = "Export links";
+            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
+            // 
+            // saveFileDialog2
+            // 
+            this.saveFileDialog2.DefaultExt = "zip";
+            this.saveFileDialog2.Filter = "|*.zip";
+            this.saveFileDialog2.Title = "Export zip file";
+            this.saveFileDialog2.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog2_FileOk);
+            // 
+            // pdf_exportworker
+            // 
+            this.pdf_exportworker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.pdf_exportworker_DoWork);
+            this.pdf_exportworker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.pdf_exportworker_RunWorkerCompleted);
             // 
             // Form1
             // 
@@ -389,6 +488,17 @@ namespace Searcher_A
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ToolStripMenuItem connectionToolStripMenuItem;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.ToolStripMenuItem importExportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importLinksToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportLinksToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem exportAllOfflinePagesTozipToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog2;
+        private System.ComponentModel.BackgroundWorker pdf_exportworker;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
     }
 }
 

@@ -71,6 +71,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About_page.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="About_page.Designer.cs">
+      <DependentUpon>About_page.cs</DependentUpon>
+    </Compile>
     <Compile Include="Add_new_website.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +88,12 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="help_page.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="help_page.Designer.cs">
+      <DependentUpon>help_page.cs</DependentUpon>
     </Compile>
     <Compile Include="Offline_pages.cs">
       <SubType>Form</SubType>
@@ -104,11 +116,17 @@
       <DependentUpon>Settings_page.cs</DependentUpon>
     </Compile>
     <Compile Include="track_change.cs" />
+    <EmbeddedResource Include="About_page.resx">
+      <DependentUpon>About_page.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Add_new_website.resx">
       <DependentUpon>Add_new_website.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="help_page.resx">
+      <DependentUpon>help_page.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Offline_pages.resx">
       <DependentUpon>Offline_pages.cs</DependentUpon>
@@ -147,6 +165,7 @@
     <None Include="Resources\download.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\links.lnks" />
     <None Include="Resources\search_field.png" />
     <None Include="Resources\cog.png" />
     <None Include="Resources\catalog_pages.png" />
@@ -162,6 +181,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="information.ico" />
+    <None Include="Resources\Cute-cat-meow-sound.wav" />
+    <None Include="Resources\WebSnifferApplicationGuide.html" />
+    <None Include="Resources\file_extension_zip.png" />
+    <None Include="Resources\text_exports.png" />
+    <None Include="Resources\text_imports.png" />
+    <None Include="Resources\document_import.png" />
+    <None Include="Resources\help.png" />
+    <None Include="Resources\infocard.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

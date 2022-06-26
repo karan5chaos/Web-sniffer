@@ -1,0 +1,15 @@
+Wikipedia,https://en.wikipedia.org/wiki/*query*,true
+Scholarpedia,http://www.scholarpedia.org/w/index.php?search=*query*,false
+Citizendium,https://citizendium.org/wiki/index.php?search=*query*,false
+Metacademy,https://metacademy.org/search?q=*query*,false
+Britannica,https://www.britannica.com/search?query=*query*,false
+Wiktionary,https://en.wiktionary.org/wiki/*query*,false
+Wikidata,https://www.wikidata.org/w/index.php?search=*query*&ns0=1&ns120=1,false
+Infogalactic,https://infogalactic.com/info/*query*,false
+Encyclopedia,https://www.encyclopedia.com/gsearch?q=*query*,false
+Youtube,https://www.youtube.com/results?search_query=*query*,false
+Archive.org,https://archive.org/search.php?query=*query*,false
+Liveworksheets,https://www.liveworksheets.com/search.asp?content=*query*,true
+Mocomi,https://mocomi.com/?s=*query*,true
+K5learning,https://www.k5learning.com/search#stq=*query*,true
+Zunal,http://zunal.com/xsearch.php?key=*query*&GradeLevel=100&Curriculum=100,true

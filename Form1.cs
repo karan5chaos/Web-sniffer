@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -61,11 +62,12 @@ namespace Searcher_A
             if (!Directory.Exists(Properties.Settings.Default.save_path + "links"))
             {
                 Directory.CreateDirectory(Properties.Settings.Default.save_path + "/links");
+            }
 
-                if (!File.Exists(track_change.link_path))
-                {
-                    File.Create(track_change.link_path);
-                }
+            if (!File.Exists(track_change.link_path))
+            {
+                //File.Create(track_change.link_path);
+                File.WriteAllBytes(track_change.link_path, Properties.Resources.links);
             }
 
             if (!Directory.Exists(Properties.Settings.Default.save_path + "pages"))
@@ -353,6 +355,64 @@ namespace Searcher_A
             }
 
            
+        }
+
+        private void importLinksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+        }
+
+        private void exportLinksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.ShowDialog();
+
+        }
+
+        private void exportAllOfflinePagesTozipToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveFileDialog2.ShowDialog();
+
+
+        }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            File.Delete(track_change.link_path);
+            File.Move(openFileDialog1.FileName,track_change.link_path);
+            MessageBox.Show("Links imported successfully.", "Import completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            //File.Replace(track_change.link_path, openFileDialog1.FileName,openFileDialog1.FileName+".bak");
+        }
+
+        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            File.Copy(track_change.link_path, saveFileDialog1.FileName);
+            MessageBox.Show("Links exported successfully.", "Export completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void saveFileDialog2_FileOk(object sender, CancelEventArgs e)
+        {
+            pdf_exportworker.RunWorkerAsync();
+        }
+
+        private void pdf_exportworker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            ZipFile.CreateFromDirectory(track_change.pages_path, saveFileDialog2.FileName);
+        }
+
+        private void pdf_exportworker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            MessageBox.Show("Pages exported to zip file.","Export completed",MessageBoxButtons.OK,MessageBoxIcon.Information);
+        }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new help_page().Show();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new About_page().ShowDialog();
         }
     }
 }

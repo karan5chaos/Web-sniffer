@@ -131,12 +131,71 @@ namespace Searcher_A.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Cute_cat_meow_sound {
+            get {
+                return ResourceManager.GetStream("Cute_cat_meow_sound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap document_import {
+            get {
+                object obj = ResourceManager.GetObject("document_import", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap download {
             get {
                 object obj = ResourceManager.GetObject("download", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap file_extension_zip {
+            get {
+                object obj = ResourceManager.GetObject("file_extension_zip", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap help {
+            get {
+                object obj = ResourceManager.GetObject("help", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap infocard {
+            get {
+                object obj = ResourceManager.GetObject("infocard", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] links {
+            get {
+                object obj = ResourceManager.GetObject("links", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -151,11 +210,22 @@ namespace Searcher_A.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to www.xda.com.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static string XDA {
+        internal static System.Drawing.Bitmap text_exports {
             get {
-                return ResourceManager.GetString("XDA", resourceCulture);
+                object obj = ResourceManager.GetObject("text_exports", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap text_imports {
+            get {
+                object obj = ResourceManager.GetObject("text_imports", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }
