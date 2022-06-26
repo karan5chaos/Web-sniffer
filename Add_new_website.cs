@@ -20,13 +20,15 @@ namespace Searcher_A
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (textBox1.Text != "" && textBox2.Text != "")
+            {
+                var addnew = File.ReadAllText(Properties.Settings.Default.save_path + "links/links.lnks");
 
-            var addnew = File.ReadAllText(Properties.Settings.Default.save_path + "links/links.lnks");
+                addnew += Environment.NewLine + textBox1.Text + "," + textBox2.Text + "," + comboBox1.Text;
 
-            addnew += Environment.NewLine + textBox1.Text + "," + textBox2.Text + "," + comboBox1.Text;
-
-            File.WriteAllText(track_change.link_path,addnew);
-            this.Close();
+                File.WriteAllText(track_change.link_path, addnew);
+                this.Close();
+            }
         }
     }
 }
