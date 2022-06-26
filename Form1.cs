@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -73,6 +74,7 @@ namespace Searcher_A
                 }
         }
 
+       
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -80,13 +82,23 @@ namespace Searcher_A
 
             if (Properties.Settings.Default.q_hide == false)
             {
-                new Quote_of_the_day().ShowDialog();
-            
+                Quote_of_the_day quote = new Quote_of_the_day();
+
+                quote.WindowState = FormWindowState.Minimized;
+                quote.Show();
+                
+                //quote.Visible = false;
+                
+
+                
+                //new Quote_of_the_day().Hide();
+
+
             }
 
             load_tabs();
-
             timer1.Start();
+            
         }
 
 
@@ -99,30 +111,37 @@ namespace Searcher_A
         {
             tabControl1.Hide();
             UnloadTabpage(tabControl1);
-            
-           
-            foreach (string line in File.ReadAllLines(setting_path))
+
+            try
             {
-                var split = line.Split(',');
-
-                if (split[2]=="true")
+                foreach (string line in File.ReadAllLines(setting_path))
                 {
-                    TabPage page = new TabPage();
-                    page.Name = split[0] + "tab";
-                    page.Text = split[0];
+                    var split = line.Split(',');
 
-                    ChromiumWebBrowser browser = new ChromiumWebBrowser();
-                    browser.Name = split[0] + "wb";
-                    browser.Tag = Tag = split[1];
-                    browser.Dock = DockStyle.Fill;
+                    if (split[2] == "true")
+                    {
+                        TabPage page = new TabPage();
+                        page.Name = split[0] + "tab";
+                        page.Text = split[0];
 
-                    page.Controls.Add(browser);
-                    tabControl1.TabPages.Add(page);
+                        ChromiumWebBrowser browser = new ChromiumWebBrowser();
+                        browser.Name = split[0] + "wb";
+                        browser.Tag = Tag = split[1];
+                        browser.Dock = DockStyle.Fill;
 
-                    browser.FrameLoadEnd += Common_checkoffline;
+                        page.Controls.Add(browser);
+                        tabControl1.TabPages.Add(page);
+
+                        browser.FrameLoadEnd += Common_checkoffline;
+                    }
                 }
+                tabControl1.Show();
             }
-            tabControl1.Show();
+            catch(Exception exc)
+            {
+                MessageBox.Show("Error loading tabs..\n" +exc.Message);
+            
+            }
         }
 
 
@@ -171,20 +190,29 @@ namespace Searcher_A
 
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
-            if (track_change.changed == false && query!="")
+            try
             {
-                tab_name = tabControl1.SelectedTab.Text;
-                if (Properties.Settings.Default.Unload_on_idle)
+                if (track_change.changed == false && query != "")
                 {
-                    TabControl tabControl = sender as TabControl;
-                    get_browser(tabControl).LoadUrlAsync(get_browser(tabControl).Tag.ToString().Replace("*query*", query));
+                    tab_name = tabControl1.SelectedTab.Text;
+                    if (Properties.Settings.Default.Unload_on_idle)
+                    {
+                        TabControl tabControl = sender as TabControl;
+                        get_browser(tabControl).LoadUrlAsync(get_browser(tabControl).Tag.ToString().Replace("*query*", query));
+                    }
                 }
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show("Error while selecting tabs tabs..\n" + exc.Message);
+
             }
         }
 
         private void tabControl1_Deselected(object sender, TabControlEventArgs e)
         {
             
+
             TabControl tabControl = sender as TabControl;
 
             try
@@ -195,8 +223,11 @@ namespace Searcher_A
                 }
             }
 
-            catch
-            { }
+            catch (Exception exc)
+            {
+                MessageBox.Show("Error while unloading tabs..\n" + exc.Message);
+
+            }
         }
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -204,8 +235,15 @@ namespace Searcher_A
             new Settings_page().ShowDialog();
         }
 
+
+
         private void timer1_Tick(object sender, EventArgs e)
         {
+            if (!backgroundWorker1.IsBusy)
+            {
+                backgroundWorker1.RunWorkerAsync();
+            }
+           
             if (track_change.changed == true)
             {
                 load_tabs();
@@ -244,16 +282,77 @@ namespace Searcher_A
 
         private void button5_Click(object sender, EventArgs e)
         {
-            
-            string path = track_change.pages_path + textBox1.Text + "_" + tabControl1.SelectedTab.Text + "_page.pdf";
-            PrintToPdfAsync(path, get_browser(tabControl1));
+            try
+            {
+                string path = track_change.pages_path + textBox1.Text + "_" + tabControl1.SelectedTab.Text + "_page.pdf";
+                PrintToPdfAsync(path, get_browser(tabControl1));
 
-            status.Text = "Page downloaded for offline use..";
+                status.Text = "Page downloaded for offline use..";
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show("Error while saving page ..\n" + exc.Message);
+
+            }
         }
 
         private void qToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new Quote_of_the_day().ShowDialog();
+        }
+
+        private void Form1_Move(object sender, EventArgs e)
+        {
+            //tabControl1.Visible = false;
+        }
+
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
+           
+            
+        }
+
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+
+            var connectedd = (bool) e.UserState;
+
+            if (connectedd)
+            {
+                connectionToolStripMenuItem.Image = Properties.Resources.bullet_green;
+                connectionToolStripMenuItem.Text = "Connected";
+            }
+            else if(connected==false)
+            {
+                connectionToolStripMenuItem.Image = Properties.Resources.bullet_red;
+                connectionToolStripMenuItem.Text = "Not Connected";
+            }
+
+        }
+
+        bool connected;
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+           
+            try
+            {
+                using (var client = new WebClient())
+                using (var stream = client.OpenRead("http://www.google.com"))
+                {
+                    connected = true;
+                    backgroundWorker1.ReportProgress(0, connected);
+                }
+            }
+            catch
+            {
+                connected = false;
+                backgroundWorker1.ReportProgress(0, connected);
+            }
+
+           
         }
     }
 }
