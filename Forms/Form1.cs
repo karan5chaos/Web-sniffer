@@ -287,7 +287,9 @@ namespace Searcher_A
             try
             {
                 string path = track_change.pages_path + textBox1.Text + "_" + tabControl1.SelectedTab.Text + "_page.pdf";
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
                 PrintToPdfAsync(path, get_browser(tabControl1));
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
 
                 status.Text = "Page downloaded for offline use..";
             }
