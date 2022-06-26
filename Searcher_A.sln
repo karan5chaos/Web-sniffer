@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Searcher_A", "Searcher_A.csproj", "{37E6FC25-7ACE-42FE-9AE9-6940B3F98B09}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Web_sniffer_project", "..\Web_sniffer_project\Web_sniffer_project.vdproj", "{0517F507-9B0C-4667-9199-6B4B83A385E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{37E6FC25-7ACE-42FE-9AE9-6940B3F98B09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37E6FC25-7ACE-42FE-9AE9-6940B3F98B09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37E6FC25-7ACE-42FE-9AE9-6940B3F98B09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0517F507-9B0C-4667-9199-6B4B83A385E7}.Debug|Any CPU.ActiveCfg = Debug
+		{0517F507-9B0C-4667-9199-6B4B83A385E7}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

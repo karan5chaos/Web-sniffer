@@ -42,12 +42,12 @@ namespace Searcher_A
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.filename = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.chromiumWebBrowser1 = new CefSharp.WinForms.ChromiumWebBrowser();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deletePageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openPageExternallyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.chromiumWebBrowser1 = new CefSharp.WinForms.ChromiumWebBrowser();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -59,8 +59,8 @@ namespace Searcher_A
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.groupBox3.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -211,6 +211,31 @@ namespace Searcher_A
             this.filename.Name = "filename";
             this.filename.ReadOnly = true;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Font = new System.Drawing.Font("Calibri", 8.25F);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deletePageToolStripMenuItem,
+            this.openPageExternallyToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(180, 48);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // deletePageToolStripMenuItem
+            // 
+            this.deletePageToolStripMenuItem.Name = "deletePageToolStripMenuItem";
+            this.deletePageToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.deletePageToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.deletePageToolStripMenuItem.Text = "Delete page";
+            this.deletePageToolStripMenuItem.Click += new System.EventHandler(this.deletePageToolStripMenuItem_Click);
+            // 
+            // openPageExternallyToolStripMenuItem
+            // 
+            this.openPageExternallyToolStripMenuItem.Name = "openPageExternallyToolStripMenuItem";
+            this.openPageExternallyToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.openPageExternallyToolStripMenuItem.Text = "Open page externally..";
+            this.openPageExternallyToolStripMenuItem.Click += new System.EventHandler(this.openPageExternallyToolStripMenuItem_Click);
+            // 
             // groupBox3
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -246,31 +271,6 @@ namespace Searcher_A
             this.chromiumWebBrowser1.Size = new System.Drawing.Size(486, 505);
             this.chromiumWebBrowser1.TabIndex = 0;
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Font = new System.Drawing.Font("Calibri", 8.25F);
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deletePageToolStripMenuItem,
-            this.openPageExternallyToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(180, 48);
-            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
-            // 
-            // deletePageToolStripMenuItem
-            // 
-            this.deletePageToolStripMenuItem.Name = "deletePageToolStripMenuItem";
-            this.deletePageToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.deletePageToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
-            this.deletePageToolStripMenuItem.Text = "Delete page";
-            this.deletePageToolStripMenuItem.Click += new System.EventHandler(this.deletePageToolStripMenuItem_Click);
-            // 
-            // openPageExternallyToolStripMenuItem
-            // 
-            this.openPageExternallyToolStripMenuItem.Name = "openPageExternallyToolStripMenuItem";
-            this.openPageExternallyToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
-            this.openPageExternallyToolStripMenuItem.Text = "Open page externally..";
-            this.openPageExternallyToolStripMenuItem.Click += new System.EventHandler(this.openPageExternallyToolStripMenuItem_Click);
-            // 
             // Offline_pages
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -281,6 +281,7 @@ namespace Searcher_A
             this.Font = new System.Drawing.Font("Calibri", 8.25F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Offline_pages";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Offline pages manager";
             this.Load += new System.EventHandler(this.Offline_pages_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -296,9 +297,9 @@ namespace Searcher_A
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

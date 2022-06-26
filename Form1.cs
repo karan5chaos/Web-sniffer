@@ -19,12 +19,8 @@ namespace Searcher_A
         public Form1()
         {
             var settings = new CefSettings();
-            // settings.Locale = "zh-CN";
             settings.CefCommandLineArgs.Add("disable-gpu", "1");
-
             Cef.Initialize(settings);
-
-
 
             InitializeComponent();
         }
@@ -37,13 +33,7 @@ namespace Searcher_A
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-
-
-
-
             tab_name = tabControl1.SelectedTab.Text;
-
 
             foreach (TabPage page in tabControl1.TabPages)
             {
@@ -65,7 +55,6 @@ namespace Searcher_A
             if (!Directory.Exists(Properties.Settings.Default.save_path))
             {
                 Directory.CreateDirectory(Properties.Settings.Default.save_path);
-
             }
 
             if (!Directory.Exists(Properties.Settings.Default.save_path + "links"))
@@ -75,7 +64,6 @@ namespace Searcher_A
                 if (!File.Exists(track_change.link_path))
                 {
                     File.Create(track_change.link_path);
-
                 }
             }
 
@@ -89,9 +77,13 @@ namespace Searcher_A
         {
 
             create_folder();
-           // fileSystemWatcher1.Path = setting_path;
 
-           // checkBox1.Checked = Properties.Settings.Default.Unload_on_idle;
+            if (Properties.Settings.Default.q_hide == false)
+            {
+                new Quote_of_the_day().ShowDialog();
+            
+            }
+
             load_tabs();
 
             timer1.Start();
@@ -105,10 +97,9 @@ namespace Searcher_A
 
         void load_tabs()
         {
-
             tabControl1.Hide();
             UnloadTabpage(tabControl1);
-            tabControl1.Show();
+            
            
             foreach (string line in File.ReadAllLines(setting_path))
             {
@@ -118,14 +109,11 @@ namespace Searcher_A
                 {
                     TabPage page = new TabPage();
                     page.Name = split[0] + "tab";
-                    //page.Tag = split[1];
                     page.Text = split[0];
-
 
                     ChromiumWebBrowser browser = new ChromiumWebBrowser();
                     browser.Name = split[0] + "wb";
                     browser.Tag = Tag = split[1];
-
                     browser.Dock = DockStyle.Fill;
 
                     page.Controls.Add(browser);
@@ -134,21 +122,13 @@ namespace Searcher_A
                     browser.FrameLoadEnd += Common_checkoffline;
                 }
             }
-           
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-           
-
+            tabControl1.Show();
         }
 
 
         public static async Task PrintToPdfAsync(string path, ChromiumWebBrowser browser)
         {
             await browser.PrintToPdfAsync(path);
-            
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
@@ -156,7 +136,6 @@ namespace Searcher_A
             if (e.KeyCode == Keys.Enter)
             {
                 button1_Click(null,null);
-            
             }
         }
 
@@ -183,13 +162,7 @@ namespace Searcher_A
             }
         }
 
-      
 
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-           
-        }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -198,21 +171,13 @@ namespace Searcher_A
 
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
-
             if (track_change.changed == false && query!="")
             {
                 tab_name = tabControl1.SelectedTab.Text;
                 if (Properties.Settings.Default.Unload_on_idle)
                 {
                     TabControl tabControl = sender as TabControl;
-
-
-                    foreach (ChromiumWebBrowser browser in tabControl.SelectedTab.Controls)
-                    {
-
-                        browser.LoadUrlAsync(browser.Tag.ToString().Replace("*query*", query));
-                    }
-
+                    get_browser(tabControl).LoadUrlAsync(get_browser(tabControl).Tag.ToString().Replace("*query*", query));
                 }
             }
         }
@@ -226,10 +191,7 @@ namespace Searcher_A
             {
                 if (Properties.Settings.Default.Unload_on_idle && track_change.changed==false && query!="")
                 {
-                    foreach (ChromiumWebBrowser browser in tabControl.SelectedTab.Controls)
-                    {
-                        browser.LoadUrlAsync("http://www.blankwebsite.com/");
-                    }
+                    get_browser(tabControl1).LoadUrlAsync("http://www.blankwebsite.com/");
                 }
             }
 
@@ -242,11 +204,6 @@ namespace Searcher_A
             new Settings_page().ShowDialog();
         }
 
-        private void fileSystemWatcher1_Changed(object sender, FileSystemEventArgs e)
-        {
-           
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (track_change.changed == true)
@@ -257,54 +214,46 @@ namespace Searcher_A
             }
         }
 
+        public ChromiumWebBrowser get_browser(TabControl tabcontrol)
+        {
+            ChromiumWebBrowser browser = new ChromiumWebBrowser();
+            foreach (Control control in tabcontrol.SelectedTab.Controls)
+            {
+                browser = (ChromiumWebBrowser)control;
+            }
+
+            return browser;
+        }
+
         private void button2_Click_1(object sender, EventArgs e)
         {
-            foreach (Control control in tabControl1.SelectedTab.Controls)
-            {
-                ChromiumWebBrowser browser = new ChromiumWebBrowser();
-                browser = (ChromiumWebBrowser)control;
-
-                browser.Back();
-            }
+            get_browser(tabControl1).Back();
 
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            foreach (Control control in tabControl1.SelectedTab.Controls)
-            {
-                ChromiumWebBrowser browser = new ChromiumWebBrowser();
-                browser = (ChromiumWebBrowser)control;
-
-                browser.Forward();
-            }
+            get_browser(tabControl1).Forward();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            foreach (Control control in tabControl1.SelectedTab.Controls)
-            {
-                ChromiumWebBrowser browser = new ChromiumWebBrowser();
-                browser = (ChromiumWebBrowser)control;
-
-                browser.LoadUrlAsync("http://www.blankwebsite.com/");
-            }
+            get_browser(tabControl1).LoadUrlAsync("http://www.blankwebsite.com/");
+            
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            ChromiumWebBrowser browser = null;
-            string path = "";
+            
+            string path = track_change.pages_path + textBox1.Text + "_" + tabControl1.SelectedTab.Text + "_page.pdf";
+            PrintToPdfAsync(path, get_browser(tabControl1));
 
-            foreach (Control control in tabControl1.SelectedTab.Controls)
-            {
-                browser = (ChromiumWebBrowser)control;
-                path = track_change.pages_path + textBox1.Text + "_" + tabControl1.SelectedTab.Text + "_page.pdf";
-
-            }
-
-            PrintToPdfAsync(path, browser);
             status.Text = "Page downloaded for offline use..";
+        }
+
+        private void qToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Quote_of_the_day().ShowDialog();
         }
     }
 }

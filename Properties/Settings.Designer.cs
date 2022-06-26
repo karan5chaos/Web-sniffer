@@ -58,5 +58,17 @@ namespace Searcher_A.Properties {
                 this["save_path"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool q_hide {
+            get {
+                return ((bool)(this["q_hide"]));
+            }
+            set {
+                this["q_hide"] = value;
+            }
+        }
     }
 }

@@ -11,27 +11,28 @@ using System.Windows.Forms;
 
 namespace Searcher_A
 {
+
+
     public partial class Settings_page : Form
     {
         public Settings_page()
         {
+            
             InitializeComponent();
+            this.dataGridView1.DoubleBuffered(true);
         }
 
 
 
         string setting_path = track_change.link_path;
-
+      
         private void Settings_page_Load(object sender, EventArgs e)
         {
+
             checkBox1.Checked = Properties.Settings.Default.Unload_on_idle;
-            foreach (string line in File.ReadAllLines(setting_path))
-            {
-
-                var split = line.Split(',');
-
-                dataGridView1.Rows.Add(Convert.ToBoolean(split[2]),split[0],split[1]);                
-            }
+            
+            backgroundWorker1.RunWorkerAsync();
+          
         }
 
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -96,6 +97,29 @@ namespace Searcher_A
             Properties.Settings.Default.Unload_on_idle = Convert.ToBoolean(checkBox1.CheckState);
             Properties.Settings.Default.Save();
             Properties.Settings.Default.Reload();
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+            
+            foreach (string line in File.ReadAllLines(setting_path))
+            {
+                var split = line.Split(',');
+                backgroundWorker1.ReportProgress(0, split);
+            }
+
+        }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            //split = null;
+        }
+
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            var split = e.UserState as string[];
+            dataGridView1.Rows.Add(Convert.ToBoolean(split[2]), split[0], split[1]);
         }
     }
 }

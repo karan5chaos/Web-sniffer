@@ -6,19 +6,26 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Searcher_A
 {
+
+    
+
     public partial class Offline_pages : Form
     {
         public Offline_pages()
         {
+           
             InitializeComponent();
+            this.dataGridView1.DoubleBuffered(true);
         }
 
+        
 
         //string path = @"C:\EZ-5\";
         private void Offline_pages_Load(object sender, EventArgs e)
@@ -36,7 +43,7 @@ namespace Searcher_A
             //dataGridView1.ClearSelection();
             dataGridView1.Rows.Clear();
 
-            foreach (string file in Directory.GetFiles(track_change.pages_path, "*.pdf"))
+            foreach (string file in Directory.EnumerateFiles(track_change.pages_path, "*.pdf"))
             {
                 DataGridViewRow dr = new DataGridViewRow();
                 dr.CreateCells(dataGridView1);
@@ -139,4 +146,6 @@ namespace Searcher_A
             
         }
     }
+
+
 }
