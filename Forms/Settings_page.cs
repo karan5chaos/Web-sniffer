@@ -173,20 +173,28 @@ namespace Searcher_A
 
         private void button2_Click(object sender, EventArgs e)
         {
+            try
+            {
+                var index = dataGridView1.SelectedRows[0].Index;
 
-            var index = dataGridView1.SelectedRows[0].Index;
+                string[] arrLine = File.ReadAllLines(setting_path);
+                arrLine[index] = "";
+                //var rem = arrLine[index].Where(l => l.Trim().Length > 0);
 
-            string[] arrLine = File.ReadAllLines(setting_path);
-            arrLine[index] = "";
-            //var rem = arrLine[index].Where(l => l.Trim().Length > 0);
+                //arrLine[index] = arrLine[index].Remove(index);
+                File.WriteAllLines(setting_path, arrLine);
 
-            //arrLine[index] = arrLine[index].Remove(index);
-            File.WriteAllLines(setting_path, arrLine);
+                var lines = File.ReadAllLines(setting_path).Where(arg => !string.IsNullOrWhiteSpace(arg));
+                File.WriteAllLines(setting_path, lines);
 
-            var lines = File.ReadAllLines(setting_path).Where(arg => !string.IsNullOrWhiteSpace(arg));
-            File.WriteAllLines(setting_path, lines);
+                load_links();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show("Error while deleting link..\n" + exc.Message);
 
-            load_links();
+            }
+
 
         }
     }
