@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -31,8 +32,9 @@ namespace Searcher_A
 
             checkBox1.Checked = Properties.Settings.Default.Unload_on_idle;
             checkBox2.Checked = Properties.Settings.Default.q_hide;
+            textBox1.Text = Properties.Settings.Default.d_save_folder_name;
 
-            backgroundWorker1.RunWorkerAsync();
+            load_links();
           
         }
 
@@ -91,11 +93,14 @@ namespace Searcher_A
         private void Settings_page_FormClosing(object sender, FormClosingEventArgs e)
         {
             track_change.changed = ischanged;
+            Properties.Settings.Default.d_save_folder_name = textBox1.Text;
+            Properties.Settings.Default.Save();
+            Properties.Settings.Default.Reload();
         }
 
         private void addNewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new Add_new_website().ShowDialog();
+           
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -105,6 +110,13 @@ namespace Searcher_A
             Properties.Settings.Default.Reload();
         }
 
+        void load_links()
+        {
+            dataGridView1.Rows.Clear();
+            backgroundWorker1.RunWorkerAsync();
+        
+        
+        }
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             try
@@ -139,6 +151,43 @@ namespace Searcher_A
             Properties.Settings.Default.q_hide = Convert.ToBoolean(checkBox2.CheckState);
             Properties.Settings.Default.Save();
             Properties.Settings.Default.Reload();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new Add_new_website().ShowDialog();
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox3.Checked)
+            {
+                textBox1.Enabled = true;
+
+            }
+            else
+            {
+                textBox1.Enabled = false;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            var index = dataGridView1.SelectedRows[0].Index;
+
+            string[] arrLine = File.ReadAllLines(setting_path);
+            arrLine[index] = "";
+            //var rem = arrLine[index].Where(l => l.Trim().Length > 0);
+
+            //arrLine[index] = arrLine[index].Remove(index);
+            File.WriteAllLines(setting_path, arrLine);
+
+            var lines = File.ReadAllLines(setting_path).Where(arg => !string.IsNullOrWhiteSpace(arg));
+            File.WriteAllLines(setting_path, lines);
+
+            load_links();
+
         }
     }
 }

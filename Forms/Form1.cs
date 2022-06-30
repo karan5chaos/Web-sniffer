@@ -1,5 +1,12 @@
-﻿using CefSharp;
+﻿using Auth0.ManagementApi.Models;
+using CefSharp;
 using CefSharp.WinForms;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Auth.OAuth2.Flows;
+using Google.Apis.Auth.OAuth2.Responses;
+using Google.Apis.Drive.v3;
+using Google.Apis.Services;
+using Google.Apis.Util.Store;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,8 +18,10 @@ using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Google.Apis.Drive.v3.DriveService;
 
 namespace Searcher_A
 {
@@ -71,12 +80,12 @@ namespace Searcher_A
             }
 
             if (!Directory.Exists(Properties.Settings.Default.save_path + "pages"))
-                {
-                    Directory.CreateDirectory(Properties.Settings.Default.save_path + "/pages");
-                }
+            {
+                Directory.CreateDirectory(Properties.Settings.Default.save_path + "/pages");
+            }
         }
 
-       
+
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -88,19 +97,11 @@ namespace Searcher_A
 
                 quote.WindowState = FormWindowState.Minimized;
                 quote.Show();
-                
-                //quote.Visible = false;
-                
-
-                
-                //new Quote_of_the_day().Hide();
-
-
             }
 
             load_tabs();
             timer1.Start();
-            
+
         }
 
 
@@ -135,14 +136,16 @@ namespace Searcher_A
                         tabControl1.TabPages.Add(page);
 
                         browser.FrameLoadEnd += Common_checkoffline;
+                        //browser.ContextMenuStrip = brow_context;
+
                     }
                 }
                 tabControl1.Show();
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
-                MessageBox.Show("Error loading tabs..\n" +exc.Message);
-            
+                MessageBox.Show("Error loading tabs..\n" + exc.Message);
+
             }
         }
 
@@ -156,7 +159,7 @@ namespace Searcher_A
         {
             if (e.KeyCode == Keys.Enter)
             {
-                button1_Click(null,null);
+                button1_Click(null, null);
             }
         }
 
@@ -169,7 +172,7 @@ namespace Searcher_A
 
         private void Common_checkoffline(object sender, FrameLoadEndEventArgs e)
         {
-            string name =  prim_path + query + "_" + tab_name + "_page.pdf";
+            string name = prim_path + query + "_" + tab_name + "_page.pdf";
 
             if (File.Exists(name))
             {
@@ -178,7 +181,7 @@ namespace Searcher_A
             }
             else
             {
-               // button4.Text = "Save for offline use";
+                // button4.Text = "Save for offline use";
 
             }
         }
@@ -213,13 +216,13 @@ namespace Searcher_A
 
         private void tabControl1_Deselected(object sender, TabControlEventArgs e)
         {
-            
+
 
             TabControl tabControl = sender as TabControl;
 
             try
             {
-                if (Properties.Settings.Default.Unload_on_idle && track_change.changed==false && query!="")
+                if (Properties.Settings.Default.Unload_on_idle && track_change.changed == false && query != "")
                 {
                     get_browser(tabControl1).LoadUrlAsync("http://www.blankwebsite.com/");
                 }
@@ -245,12 +248,12 @@ namespace Searcher_A
             {
                 backgroundWorker1.RunWorkerAsync();
             }
-           
+
             if (track_change.changed == true)
             {
                 load_tabs();
                 track_change.changed = false;
-            
+
             }
         }
 
@@ -279,7 +282,7 @@ namespace Searcher_A
         private void button4_Click(object sender, EventArgs e)
         {
             get_browser(tabControl1).LoadUrlAsync("http://www.blankwebsite.com/");
-            
+
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -314,21 +317,21 @@ namespace Searcher_A
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
 
-           
-            
+
+
         }
 
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
 
-            var connectedd = (bool) e.UserState;
+            var connectedd = (bool)e.UserState;
 
             if (connectedd)
             {
                 connectionToolStripMenuItem.Image = Properties.Resources.bullet_green;
                 connectionToolStripMenuItem.Text = "Connected";
             }
-            else if(connected==false)
+            else if (connected == false)
             {
                 connectionToolStripMenuItem.Image = Properties.Resources.bullet_red;
                 connectionToolStripMenuItem.Text = "Not Connected";
@@ -340,7 +343,7 @@ namespace Searcher_A
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-           
+
             try
             {
                 using (var client = new WebClient())
@@ -356,7 +359,7 @@ namespace Searcher_A
                 backgroundWorker1.ReportProgress(0, connected);
             }
 
-           
+
         }
 
         private void importLinksToolStripMenuItem_Click(object sender, EventArgs e)
@@ -380,7 +383,7 @@ namespace Searcher_A
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
             File.Delete(track_change.link_path);
-            File.Move(openFileDialog1.FileName,track_change.link_path);
+            File.Move(openFileDialog1.FileName, track_change.link_path);
             MessageBox.Show("Links imported successfully.", "Import completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             //File.Replace(track_change.link_path, openFileDialog1.FileName,openFileDialog1.FileName+".bak");
@@ -404,7 +407,7 @@ namespace Searcher_A
 
         private void pdf_exportworker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            MessageBox.Show("Pages exported to zip file.","Export completed",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            MessageBox.Show("Pages exported to zip file.", "Export completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)

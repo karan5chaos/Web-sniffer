@@ -70,5 +70,29 @@ namespace Searcher_A.Properties {
                 this["q_hide"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("root")]
+        public string d_folder_name {
+            get {
+                return ((string)(this["d_folder_name"]));
+            }
+            set {
+                this["d_folder_name"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Offline Pages")]
+        public string d_save_folder_name {
+            get {
+                return ((string)(this["d_save_folder_name"]));
+            }
+            set {
+                this["d_save_folder_name"] = value;
+            }
+        }
     }
 }
