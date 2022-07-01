@@ -20,5 +20,17 @@
     <Setting Name="d_save_folder_name" Type="System.String" Scope="User">
       <Value Profile="(Default)">Offline Pages</Value>
     </Setting>
+    <Setting Name="pages_path" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:/W_sniffer/pages</Value>
+    </Setting>
+    <Setting Name="lnk_path" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:/W_sniffer/links/links.lnks</Value>
+    </Setting>
+    <Setting Name="lins_path" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:/W_sniffer/links</Value>
+    </Setting>
+    <Setting Name="auto_backup" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

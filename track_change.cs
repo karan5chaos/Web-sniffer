@@ -30,8 +30,8 @@ namespace Searcher_A
     {
         public static bool changed { get; set; }
 
-        public static string link_path = Properties.Settings.Default.save_path + "links/links.lnks";
-        public static string pages_path = Properties.Settings.Default.save_path + "/pages/";
+        public static string link_path = Properties.Settings.Default.lnk_path;
+        public static string pages_path = Properties.Settings.Default.pages_path;
         public static string message = "";
 
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -9,6 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Transitions;
 
 namespace Searcher_A
 {
@@ -33,6 +35,12 @@ namespace Searcher_A
             checkBox1.Checked = Properties.Settings.Default.Unload_on_idle;
             checkBox2.Checked = Properties.Settings.Default.q_hide;
             textBox1.Text = Properties.Settings.Default.d_save_folder_name;
+            checkBox4.Checked = Properties.Settings.Default.auto_backup;
+
+            textBox2.Text = track_change.link_path;
+            textBox3.Text = track_change.pages_path;
+            textBox4.Text = Properties.Settings.Default.save_path;
+            textBox5.Text = Properties.Settings.Default.lins_path;
 
             load_links();
           
@@ -155,7 +163,14 @@ namespace Searcher_A
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new Add_new_website().ShowDialog();
+            var dr = new Add_new_website().ShowDialog();
+
+            if (dr == DialogResult.OK)
+            {
+                load_links();
+            
+            }
+
         }
 
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
@@ -196,6 +211,34 @@ namespace Searcher_A
             }
 
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Process.Start(textBox2.Text);
+        }
+
+        private void checkBox5_CheckedChanged(object sender, EventArgs e)
+        {
+            panel1.Enabled = checkBox5.Checked;
+
+            if (checkBox5.Checked)
+            {
+                Transition.run(checkBox5, "ForeColor", Color.Black  , new TransitionType_Flash(999999, 99999));
+
+            }
+            else
+            {
+                Transition.run(checkBox5, "ForeColor", Color.DarkRed, new TransitionType_Deceleration(1000));
+                checkBox5.ForeColor = Color.DarkRed;
+            }
+        }
+
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.auto_backup = checkBox4.Checked;
+            Properties.Settings.Default.Save();
+            Properties.Settings.Default.Reload();
         }
     }
 }

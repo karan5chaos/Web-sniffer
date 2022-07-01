@@ -29,7 +29,7 @@ namespace Searcher_A
             load_files();
         }
 
-        void load_files()
+        public void load_files()
         {
             try
             {

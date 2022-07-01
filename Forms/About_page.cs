@@ -20,12 +20,12 @@ namespace Searcher_A
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("mailto:"+linkLabel1.Text);
+            
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start(linkLabel2.Text);
+            
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -33,6 +33,16 @@ namespace Searcher_A
             System.IO.Stream str = Properties.Resources.Cute_cat_meow_sound;
             System.Media.SoundPlayer snd = new System.Media.SoundPlayer(str);
             snd.Play();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Process.Start("mailto:karan@nextschool.org");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Process.Start("www.linkedin.com/in/karanpiprani");
         }
     }
 }

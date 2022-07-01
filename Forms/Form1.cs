@@ -7,6 +7,7 @@ using Google.Apis.Auth.OAuth2.Responses;
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
+using Searcher_A.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Transitions;
 using static Google.Apis.Drive.v3.DriveService;
 
 namespace Searcher_A
@@ -38,7 +40,7 @@ namespace Searcher_A
 
         string query = "";
         string tab_name = "";
-        string prim_path = Properties.Settings.Default.save_path;
+        string prim_path = track_change.pages_path;
         string setting_path = track_change.link_path;
 
 
@@ -68,9 +70,9 @@ namespace Searcher_A
                 Directory.CreateDirectory(Properties.Settings.Default.save_path);
             }
 
-            if (!Directory.Exists(Properties.Settings.Default.save_path + "links"))
+            if (!Directory.Exists(Properties.Settings.Default.lins_path))
             {
-                Directory.CreateDirectory(Properties.Settings.Default.save_path + "/links");
+                Directory.CreateDirectory(Properties.Settings.Default.lins_path);
             }
 
             if (!File.Exists(track_change.link_path))
@@ -79,9 +81,9 @@ namespace Searcher_A
                 File.WriteAllBytes(track_change.link_path, Properties.Resources.links);
             }
 
-            if (!Directory.Exists(Properties.Settings.Default.save_path + "pages"))
+            if (!Directory.Exists(Properties.Settings.Default.pages_path))
             {
-                Directory.CreateDirectory(Properties.Settings.Default.save_path + "/pages");
+                Directory.CreateDirectory(Properties.Settings.Default.pages_path);
             }
         }
 
@@ -99,8 +101,15 @@ namespace Searcher_A
                 quote.Show();
             }
 
+
             load_tabs();
             timer1.Start();
+
+            if (Properties.Settings.Default.auto_backup)
+            {
+                drive_backgroundworker.RunWorkerAsync();
+            
+            }
 
         }
 
@@ -168,22 +177,11 @@ namespace Searcher_A
             new Offline_pages().Show();
         }
 
-
+        string offtxt = "Save for offline use";
 
         private void Common_checkoffline(object sender, FrameLoadEndEventArgs e)
         {
-            string name = prim_path + query + "_" + tab_name + "_page.pdf";
-
-            if (File.Exists(name))
-            {
-                button4.Text = "Offline page available!";
-
-            }
-            else
-            {
-                // button4.Text = "Save for offline use";
-
-            }
+           
         }
 
 
@@ -255,6 +253,24 @@ namespace Searcher_A
                 track_change.changed = false;
 
             }
+
+            string name = prim_path + query + "_" + tab_name + "_page.pdf";
+
+            if (File.Exists(name))
+            {
+                //Transition.run(button5, "ForeColor", Color.Red, new TransitionType_Flash(1,100));
+                button6.Enabled = true;
+                button5.Enabled = false;
+                
+
+            }
+            else
+            {
+                
+                button6.Enabled = false;
+                button5.Enabled = true;
+
+            }
         }
 
         public ChromiumWebBrowser get_browser(TabControl tabcontrol)
@@ -324,14 +340,13 @@ namespace Searcher_A
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
 
-            var connectedd = (bool)e.UserState;
-
+            var connectedd = Convert.ToBoolean(e.UserState);
             if (connectedd)
             {
                 connectionToolStripMenuItem.Image = Properties.Resources.bullet_green;
                 connectionToolStripMenuItem.Text = "Connected";
             }
-            else if (connected == false)
+            else if (connectedd == false)
             {
                 connectionToolStripMenuItem.Image = Properties.Resources.bullet_red;
                 connectionToolStripMenuItem.Text = "Not Connected";
@@ -339,13 +354,15 @@ namespace Searcher_A
 
         }
 
-        bool connected;
+        
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-
+            bool connected;
             try
             {
+                
+
                 using (var client = new WebClient())
                 using (var stream = client.OpenRead("http://www.google.com"))
                 {
@@ -418,6 +435,74 @@ namespace Searcher_A
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new About_page().ShowDialog();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+           
+
+            // pages.dataGridView1.SelectedRows.Clear();
+
+
+
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Offline_pages pages = new Offline_pages();
+
+            string link = prim_path + query + "_" + tab_name + "_page.pdf";
+            pages.Show();
+
+            //pages.dataGridView1.SelectedRows.Clear();
+            foreach (DataGridViewRow row in pages.dataGridView1.Rows)
+            {
+                if (row.Tag.ToString() == link)
+                {
+                    row.Selected = true;
+                    pages.chromiumWebBrowser1.Load(row.Tag.ToString());
+
+                }
+
+            }
+        }
+
+        private void drive_backgroundworker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                track_change.Check_folder(Properties.Settings.Default.d_save_folder_name);
+                foreach (string file in Directory.EnumerateFiles(track_change.pages_path, "*.pdf"))
+                {
+                    using (Stream sr = File.OpenRead(file))
+                    {
+                        track_change.UploadFile(sr, Path.GetFileName(file), "application/pdf", Properties.Settings.Default.d_folder_name, "");
+                        drive_backgroundworker.ReportProgress(0, track_change.message);
+                    }
+                }
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show("Error occurred..\n" + exc.Message);
+
+            }
+        }
+
+        private void drive_backgroundworker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            status.Text = "Auto-backup completed..";
+        }
+
+        private void drive_backgroundworker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            var message = e.UserState as string;
+            status.Text = message;
+        }
+
+        private void changelogsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new changelogs_form().ShowDialog();
         }
     }
 }

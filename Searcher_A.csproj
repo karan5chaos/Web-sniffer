@@ -132,6 +132,12 @@
     <Compile Include="Forms\Add_new_website.Designer.cs">
       <DependentUpon>Add_new_website.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\changelogs_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\changelogs_form.Designer.cs">
+      <DependentUpon>changelogs_form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Add_new_website.resx">
       <DependentUpon>Add_new_website.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\changelogs_form.resx">
+      <DependentUpon>changelogs_form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -232,6 +241,12 @@
     <Content Include="information.ico" />
     <None Include="Resources\google-drive.png" />
     <None Include="Resources\plus.png" />
+    <None Include="Resources\from_web.png" />
+    <None Include="Resources\email.png" />
+    <None Include="Resources\linkedin.png" />
+    <None Include="Resources\bullet_arrow_up.png" />
+    <None Include="Resources\changelog.txt" />
+    <None Include="Resources\raw_access_logs.png" />
     <Content Include="script_save.ico" />
     <None Include="Resources\Cute-cat-meow-sound.wav" />
     <None Include="Resources\WebSnifferApplicationGuide.html" />

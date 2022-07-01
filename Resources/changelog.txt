@@ -1,0 +1,29 @@
+Check Github page for more info: https://github.com/karan5chaos/Web-sniffer
+
+v3.0 Changelog - 
+
+	Added auto-backup functionality for offline pages on application startup.
+	Added advanced settings for application.
+	Fixed a bug when adding new links.
+	Added offline page button for primary browsers.
+	Offline button now opens up the correct offline page.
+	Fixed application paths. They are now centralized.
+	Misc. bug fixes and optimizations.
+
+v2.0 Changelog - 
+	
+	Added functionality to upload offine pages to google drive.
+	Fixed bug that cased additional line in .lnks file.
+	Streamlined the application flow.
+	Added checks where the application will check if the file is present before uploading to G-drive.
+	Enable doublebuffer for forms and controls for smoother experience.
+	Fixed network connectivity indicator bug.
+	Added an option to change G-drive upload folder name.
+	Added and packed application to an installer file.
+
+v1.0 Changelog -
+
+	Initial public release is now out.
+	Application now dynamically creates browser instances based in .lnks file.
+	Got rid of static file paths.
+	Many misc. bug fixes and optimizations.

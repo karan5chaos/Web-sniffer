@@ -94,5 +94,53 @@ namespace Searcher_A.Properties {
                 this["d_save_folder_name"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:/W_sniffer/pages")]
+        public string pages_path {
+            get {
+                return ((string)(this["pages_path"]));
+            }
+            set {
+                this["pages_path"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:/W_sniffer/links/links.lnks")]
+        public string lnk_path {
+            get {
+                return ((string)(this["lnk_path"]));
+            }
+            set {
+                this["lnk_path"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:/W_sniffer/links")]
+        public string lins_path {
+            get {
+                return ((string)(this["lins_path"]));
+            }
+            set {
+                this["lins_path"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool auto_backup {
+            get {
+                return ((bool)(this["auto_backup"]));
+            }
+            set {
+                this["auto_backup"] = value;
+            }
+        }
     }
 }

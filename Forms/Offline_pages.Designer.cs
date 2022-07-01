@@ -39,21 +39,21 @@ namespace Searcher_A
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.button2 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.filename = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deletePageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openPageExternallyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uploadAndGetLinkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.chromiumWebBrowser1 = new CefSharp.WinForms.ChromiumWebBrowser();
-            this.button2 = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
-            this.uploadAndGetLinkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -65,10 +65,10 @@ namespace Searcher_A
             this.splitContainer2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -177,6 +177,45 @@ namespace Searcher_A
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Page list";
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Font = new System.Drawing.Font("Calibri", 8.25F);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.toolStripProgressBar1});
+            this.statusStrip1.Location = new System.Drawing.Point(3, 443);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(257, 22);
+            this.statusStrip1.TabIndex = 8;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(10, 17);
+            this.toolStripStatusLabel1.Text = "-";
+            // 
+            // toolStripProgressBar1
+            // 
+            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
+            this.toolStripProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.toolStripProgressBar1.Visible = false;
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Image = global::Searcher_A.Properties.Resources.google_drive;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.Location = new System.Drawing.Point(5, 411);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(252, 23);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Upload all pages to Google Drive";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -206,7 +245,6 @@ namespace Searcher_A
             this.dataGridView1.Location = new System.Drawing.Point(5, 84);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(252, 321);
@@ -217,7 +255,6 @@ namespace Searcher_A
             // 
             this.filename.HeaderText = "Filename";
             this.filename.Name = "filename";
-            this.filename.ReadOnly = true;
             // 
             // contextMenuStrip1
             // 
@@ -233,16 +270,23 @@ namespace Searcher_A
             // 
             this.deletePageToolStripMenuItem.Name = "deletePageToolStripMenuItem";
             this.deletePageToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.deletePageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deletePageToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.deletePageToolStripMenuItem.Text = "Delete page";
             this.deletePageToolStripMenuItem.Click += new System.EventHandler(this.deletePageToolStripMenuItem_Click);
             // 
             // openPageExternallyToolStripMenuItem
             // 
             this.openPageExternallyToolStripMenuItem.Name = "openPageExternallyToolStripMenuItem";
-            this.openPageExternallyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openPageExternallyToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.openPageExternallyToolStripMenuItem.Text = "Open page externally..";
             this.openPageExternallyToolStripMenuItem.Click += new System.EventHandler(this.openPageExternallyToolStripMenuItem_Click);
+            // 
+            // uploadAndGetLinkToolStripMenuItem
+            // 
+            this.uploadAndGetLinkToolStripMenuItem.Name = "uploadAndGetLinkToolStripMenuItem";
+            this.uploadAndGetLinkToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.uploadAndGetLinkToolStripMenuItem.Text = "Upload and get link";
+            this.uploadAndGetLinkToolStripMenuItem.Click += new System.EventHandler(this.uploadAndGetLinkToolStripMenuItem_Click);
             // 
             // groupBox3
             // 
@@ -279,58 +323,12 @@ namespace Searcher_A
             this.chromiumWebBrowser1.Size = new System.Drawing.Size(495, 509);
             this.chromiumWebBrowser1.TabIndex = 0;
             // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Image = global::Searcher_A.Properties.Resources.google_drive;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(5, 411);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(252, 23);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Upload all pages to Google Drive";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // backgroundWorker1
             // 
             this.backgroundWorker1.WorkerReportsProgress = true;
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Font = new System.Drawing.Font("Calibri", 8.25F);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
-            this.toolStripProgressBar1});
-            this.statusStrip1.Location = new System.Drawing.Point(3, 443);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(257, 22);
-            this.statusStrip1.TabIndex = 8;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(10, 17);
-            this.toolStripStatusLabel1.Text = "-";
-            // 
-            // toolStripProgressBar1
-            // 
-            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
-            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
-            this.toolStripProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.toolStripProgressBar1.Visible = false;
-            // 
-            // uploadAndGetLinkToolStripMenuItem
-            // 
-            this.uploadAndGetLinkToolStripMenuItem.Name = "uploadAndGetLinkToolStripMenuItem";
-            this.uploadAndGetLinkToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.uploadAndGetLinkToolStripMenuItem.Text = "Upload and get link";
-            this.uploadAndGetLinkToolStripMenuItem.Click += new System.EventHandler(this.uploadAndGetLinkToolStripMenuItem_Click);
             // 
             // timer1
             // 
@@ -361,12 +359,12 @@ namespace Searcher_A
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -374,9 +372,6 @@ namespace Searcher_A
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private CefSharp.WinForms.ChromiumWebBrowser chromiumWebBrowser1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn filename;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -397,5 +392,8 @@ namespace Searcher_A
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         private System.Windows.Forms.ToolStripMenuItem uploadAndGetLinkToolStripMenuItem;
         private System.Windows.Forms.Timer timer1;
+        public System.Windows.Forms.GroupBox groupBox1;
+        public System.Windows.Forms.DataGridView dataGridView1;
+        public CefSharp.WinForms.ChromiumWebBrowser chromiumWebBrowser1;
     }
 }
