@@ -26,9 +26,20 @@ namespace Searcher_A
         }
     }
 
+    public static class StringExtender
+    {
+        public static bool Contains(this string s, string str, StringComparison comparer)
+        {
+            return s.IndexOf(str, comparer) >= 0;
+        }
+    }
+
     class track_change
     {
         public static bool changed { get; set; }
+        public static bool g_drive_process { get; set; }
+        public static bool page_saved { get; set; }
+
 
         public static string link_path = Properties.Settings.Default.lnk_path;
         public static string pages_path = Properties.Settings.Default.pages_path;

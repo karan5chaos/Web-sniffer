@@ -55,6 +55,7 @@ namespace Searcher_A
             this.chromiumWebBrowser1 = new CefSharp.WinForms.ChromiumWebBrowser();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -69,6 +70,7 @@ namespace Searcher_A
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -245,6 +247,7 @@ namespace Searcher_A
             this.dataGridView1.Location = new System.Drawing.Point(5, 84);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(252, 321);
@@ -255,6 +258,7 @@ namespace Searcher_A
             // 
             this.filename.HeaderText = "Filename";
             this.filename.Name = "filename";
+            this.filename.ReadOnly = true;
             // 
             // contextMenuStrip1
             // 
@@ -286,7 +290,6 @@ namespace Searcher_A
             this.uploadAndGetLinkToolStripMenuItem.Name = "uploadAndGetLinkToolStripMenuItem";
             this.uploadAndGetLinkToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.uploadAndGetLinkToolStripMenuItem.Text = "Upload and get link";
-            this.uploadAndGetLinkToolStripMenuItem.Click += new System.EventHandler(this.uploadAndGetLinkToolStripMenuItem_Click);
             // 
             // groupBox3
             // 
@@ -332,7 +335,15 @@ namespace Searcher_A
             // 
             // timer1
             // 
+            this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // fileSystemWatcher1
+            // 
+            this.fileSystemWatcher1.EnableRaisingEvents = true;
+            this.fileSystemWatcher1.SynchronizingObject = this;
+            this.fileSystemWatcher1.Changed += new System.IO.FileSystemEventHandler(this.fileSystemWatcher1_Changed);
+            this.fileSystemWatcher1.Created += new System.IO.FileSystemEventHandler(this.fileSystemWatcher1_Created);
             // 
             // Offline_pages
             // 
@@ -346,6 +357,8 @@ namespace Searcher_A
             this.Name = "Offline_pages";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Offline pages manager";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Offline_pages_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Offline_pages_FormClosed);
             this.Load += new System.EventHandler(this.Offline_pages_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -365,6 +378,7 @@ namespace Searcher_A
             this.contextMenuStrip1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -395,5 +409,6 @@ namespace Searcher_A
         public System.Windows.Forms.GroupBox groupBox1;
         public System.Windows.Forms.DataGridView dataGridView1;
         public CefSharp.WinForms.ChromiumWebBrowser chromiumWebBrowser1;
+        private System.IO.FileSystemWatcher fileSystemWatcher1;
     }
 }

@@ -26,7 +26,13 @@ namespace Searcher_A
 
         private void Offline_pages_Load(object sender, EventArgs e)
         {
+           
+            //if(track_change.page_saved == false)
+            fileSystemWatcher1.Path = track_change.pages_path;
+
             load_files();
+            fr = new Form1();
+            timer1.Start();
         }
 
         public void load_files()
@@ -42,7 +48,6 @@ namespace Searcher_A
                     dr.SetValues(Path.GetFileNameWithoutExtension(file));
                     dr.Tag = file;
                     dataGridView1.Rows.Add(dr);
-
                 }
             }
             catch (Exception exc)
@@ -79,7 +84,7 @@ namespace Searcher_A
                 dataGridView1.Rows.Clear();
                 foreach (string file in Directory.GetFiles(track_change.pages_path, "*.pdf"))
                 {
-                    if (file.Contains(textBox1.Text))
+                    if (file.Contains(textBox1.Text, StringComparison.InvariantCultureIgnoreCase))
                     {
                         DataGridViewRow dr = new DataGridViewRow();
                         dr.CreateCells(dataGridView1);
@@ -184,20 +189,29 @@ namespace Searcher_A
             toolStripStatusLabel1.Text = "Files uploaded successfully..";
         }
 
-        private void uploadAndGetLinkToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //var file = dataGridView1.CurrentRow.Tag.ToString();
-
-            //using (Stream sr = File.OpenRead(file))
-            //{
-            //    var id = track_change.UploadFile(sr, Path.GetFileName(file), "application/pdf", Properties.Settings.Default.d_folder_name, "";
-
-
-            //}
-        }
-
+        Form1 fr;
         private void timer1_Tick(object sender, EventArgs e)
         {
+
+            
+            
+            if (track_change.g_drive_process)
+            {
+                button2.Enabled = false;
+
+            }
+            else
+            {
+                button2.Enabled = true;
+            }
+
+            //if (track_change.page_saved==true)
+            //{
+            //    load_files();
+            //    track_change.page_saved = false;
+            //}
+            
+
             // toolStripStatusLabel1.Text = track_change.message;
         }
 
@@ -205,6 +219,32 @@ namespace Searcher_A
         {
             var split = e.UserState as string;
             toolStripStatusLabel1.Text = split;
+        }
+
+        private void fileSystemWatcher1_Changed(object sender, FileSystemEventArgs e)
+        {
+           
+            
+        }
+
+        private void Offline_pages_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+        }
+
+        private void Offline_pages_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            track_change.page_saved = false;
+        }
+
+        private void fileSystemWatcher1_Created(object sender, FileSystemEventArgs e)
+        {
+            if (track_change.page_saved == false || this.Visible==true)
+            {
+                load_files();
+            }
+                
+            
         }
     }
 

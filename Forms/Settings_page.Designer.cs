@@ -36,6 +36,8 @@ namespace Searcher_A
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.enabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -48,25 +50,23 @@ namespace Searcher_A
             this.label3 = new System.Windows.Forms.Label();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -87,7 +87,7 @@ namespace Searcher_A
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Location = new System.Drawing.Point(6, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(313, 88);
+            this.groupBox1.Size = new System.Drawing.Size(313, 98);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Browser options";
@@ -98,15 +98,16 @@ namespace Searcher_A
             this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label1.Location = new System.Drawing.Point(12, 17);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(281, 39);
+            this.label1.Size = new System.Drawing.Size(265, 52);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Unloads a unfocused page in background. Only disable this\r\nsetting for devices wi" +
-    "th high RAM. It is adviced to keep\r\nit on otherwise.";
+            this.label1.Text = "Unloads an unfocused page in background. This feature\r\nreduces memory consumption" +
+    " of the application.\r\nEnsure your device has sufficient memory before\r\ndisabling" +
+    " this setting.";
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(15, 62);
+            this.checkBox1.Location = new System.Drawing.Point(15, 74);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(119, 17);
             this.checkBox1.TabIndex = 0;
@@ -144,6 +145,32 @@ namespace Searcher_A
             this.splitContainer1.Size = new System.Drawing.Size(427, 468);
             this.splitContainer1.SplitterDistance = 64;
             this.splitContainer1.TabIndex = 1;
+            // 
+            // button2
+            // 
+            this.button2.Image = global::Searcher_A.Properties.Resources.cross;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.Location = new System.Drawing.Point(104, 38);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(111, 23);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "Delete Selected";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.Image = global::Searcher_A.Properties.Resources.plus;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(3, 38);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(95, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Add new link";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label2
             // 
@@ -227,9 +254,9 @@ namespace Searcher_A
             // 
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.checkBox2);
-            this.groupBox3.Location = new System.Drawing.Point(6, 106);
+            this.groupBox3.Location = new System.Drawing.Point(6, 116);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(313, 66);
+            this.groupBox3.Size = new System.Drawing.Size(313, 56);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Quote of the day window options";
@@ -269,6 +296,17 @@ namespace Searcher_A
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Google Drive options";
             // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(15, 69);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(270, 30);
+            this.checkBox4.TabIndex = 5;
+            this.checkBox4.Text = "Automatically backup all your pages on Google Drive\r\non application startup.";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
+            // 
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
@@ -306,17 +344,6 @@ namespace Searcher_A
             this.label4.TabIndex = 1;
             this.label4.Text = "Other options for the application";
             // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(15, 69);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(270, 30);
-            this.checkBox4.TabIndex = 5;
-            this.checkBox4.Text = "Automatically backup all your pages on Google Drive\r\non application startup.";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
-            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.panel1);
@@ -327,20 +354,6 @@ namespace Searcher_A
             this.groupBox5.TabIndex = 6;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Advanced options";
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.ForeColor = System.Drawing.Color.DarkRed;
-            this.checkBox5.Location = new System.Drawing.Point(15, 20);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(275, 56);
-            this.checkBox5.TabIndex = 0;
-            this.checkBox5.Text = "These settings are only to be used by the developer\r\nor power users. These direct" +
-    "ly affect the functionality\r\nof the application. Kindly change these only if you" +
-    "\r\nknow what you are doing.";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
             // 
             // panel1
             // 
@@ -359,37 +372,31 @@ namespace Searcher_A
             this.panel1.Size = new System.Drawing.Size(301, 119);
             this.panel1.TabIndex = 1;
             // 
-            // label6
+            // textBox5
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 10);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 13);
-            this.label6.TabIndex = 0;
-            this.label6.Text = ".lnk file path:";
+            this.textBox5.Location = new System.Drawing.Point(97, 34);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(187, 21);
+            this.textBox5.TabIndex = 8;
             // 
-            // textBox2
+            // label9
             // 
-            this.textBox2.Location = new System.Drawing.Point(80, 7);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(175, 21);
-            this.textBox2.TabIndex = 1;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(3, 37);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(88, 13);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "Links folder path:";
             // 
-            // textBox3
+            // button3
             // 
-            this.textBox3.Location = new System.Drawing.Point(104, 61);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(180, 21);
-            this.textBox3.TabIndex = 3;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 64);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(95, 13);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Offline pages path:";
+            this.button3.Image = global::Searcher_A.Properties.Resources.bullet_arrow_up;
+            this.button3.Location = new System.Drawing.Point(261, 6);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(26, 23);
+            this.button3.TabIndex = 6;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // textBox4
             // 
@@ -407,57 +414,51 @@ namespace Searcher_A
             this.label8.TabIndex = 4;
             this.label8.Text = "Initial directory path:";
             // 
-            // button3
+            // textBox3
             // 
-            this.button3.Image = global::Searcher_A.Properties.Resources.bullet_arrow_up;
-            this.button3.Location = new System.Drawing.Point(261, 6);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(26, 23);
-            this.button3.TabIndex = 6;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.textBox3.Location = new System.Drawing.Point(104, 61);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(180, 21);
+            this.textBox3.TabIndex = 3;
             // 
-            // button2
+            // label7
             // 
-            this.button2.Image = global::Searcher_A.Properties.Resources.cross;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(104, 38);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(111, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Delete Selected";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(3, 64);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(95, 13);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Offline pages path:";
             // 
-            // button1
+            // textBox2
             // 
-            this.button1.Image = global::Searcher_A.Properties.Resources.plus;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(3, 38);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(95, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Add new link";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.textBox2.Location = new System.Drawing.Point(80, 7);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(175, 21);
+            this.textBox2.TabIndex = 1;
             // 
-            // textBox5
+            // label6
             // 
-            this.textBox5.Location = new System.Drawing.Point(97, 34);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(187, 21);
-            this.textBox5.TabIndex = 8;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 10);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(68, 13);
+            this.label6.TabIndex = 0;
+            this.label6.Text = ".lnk file path:";
             // 
-            // label9
+            // checkBox5
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 37);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(88, 13);
-            this.label9.TabIndex = 7;
-            this.label9.Text = "Links folder path:";
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.ForeColor = System.Drawing.Color.DarkRed;
+            this.checkBox5.Location = new System.Drawing.Point(15, 20);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(275, 56);
+            this.checkBox5.TabIndex = 0;
+            this.checkBox5.Text = "These settings are only to be used by the developer\r\nor power users. These direct" +
+    "ly affect the functionality\r\nof the application. Kindly change these only if you" +
+    "\r\nknow what you are doing.";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
             // 
             // Settings_page
             // 

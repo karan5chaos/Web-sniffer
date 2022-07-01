@@ -8,6 +8,10 @@ v3.0 Changelog -
 	Added offline page button for primary browsers.
 	Offline button now opens up the correct offline page.
 	Fixed application paths. They are now centralized.
+	Added reload button.
+	Fixed file system watcher error when saving new pages.
+	Searching for pages in Offline page manager no ignores letter cases.
+	Better and stable algorithm for offline page names.
 	Misc. bug fixes and optimizations.
 
 v2.0 Changelog - 

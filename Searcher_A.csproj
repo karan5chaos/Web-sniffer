@@ -247,6 +247,7 @@
     <None Include="Resources\bullet_arrow_up.png" />
     <None Include="Resources\changelog.txt" />
     <None Include="Resources\raw_access_logs.png" />
+    <None Include="Resources\arrow_refresh.png" />
     <Content Include="script_save.ico" />
     <None Include="Resources\Cute-cat-meow-sound.wav" />
     <None Include="Resources\WebSnifferApplicationGuide.html" />

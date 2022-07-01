@@ -63,6 +63,16 @@ namespace Searcher_A.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap arrow_refresh {
+            get {
+                object obj = ResourceManager.GetObject("arrow_refresh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bullet_arrow_left {
             get {
                 object obj = ResourceManager.GetObject("bullet_arrow_left", resourceCulture);
@@ -121,14 +131,21 @@ namespace Searcher_A.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to v3.0 Changelog - 
+        ///   Looks up a localized string similar to Check Github page for more info: https://github.com/karan5chaos/Web-sniffer
+        ///
+        ///v3.0 Changelog - 
+        ///
         ///	Added auto-backup functionality for offline pages on application startup.
         ///	Added advanced settings for application.
         ///	Fixed a bug when adding new links.
         ///	Added offline page button for primary browsers.
         ///	Offline button now opens up the correct offline page.
         ///	Fixed application paths. They are now centralized.
-        ///	Misc. bug fixes and optimizations..
+        ///	Misc. bug fixes and optimizations.
+        ///
+        ///v2.0 Changelog - 
+        ///	
+        ///	Added functionality to upload offin [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string changelog {
             get {

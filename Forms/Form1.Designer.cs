@@ -36,9 +36,11 @@ namespace Searcher_A
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -105,7 +107,7 @@ namespace Searcher_A
             this.textBox1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.textBox1.Location = new System.Drawing.Point(51, 17);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(644, 21);
+            this.textBox1.Size = new System.Drawing.Size(456, 21);
             this.textBox1.TabIndex = 0;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
@@ -148,6 +150,7 @@ namespace Searcher_A
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.button1);
@@ -158,12 +161,21 @@ namespace Searcher_A
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Search";
             // 
+            // textBox2
+            // 
+            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox2.Location = new System.Drawing.Point(594, 17);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(182, 21);
+            this.textBox2.TabIndex = 5;
+            // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Image = global::Searcher_A.Properties.Resources.search_field;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(701, 15);
+            this.button1.Location = new System.Drawing.Point(513, 17);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
@@ -198,6 +210,7 @@ namespace Searcher_A
             // splitContainer2.Panel1
             // 
             this.splitContainer2.Panel1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.splitContainer2.Panel1.Controls.Add(this.button7);
             this.splitContainer2.Panel1.Controls.Add(this.button6);
             this.splitContainer2.Panel1.Controls.Add(this.button5);
             this.splitContainer2.Panel1.Controls.Add(this.button4);
@@ -211,11 +224,24 @@ namespace Searcher_A
             this.splitContainer2.SplitterDistance = 31;
             this.splitContainer2.TabIndex = 3;
             // 
+            // button7
+            // 
+            this.button7.Image = global::Searcher_A.Properties.Resources.arrow_refresh;
+            this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button7.Location = new System.Drawing.Point(228, 5);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(92, 23);
+            this.button7.TabIndex = 5;
+            this.button7.Text = "Reload page";
+            this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // button6
             // 
             this.button6.Image = global::Searcher_A.Properties.Resources.from_web;
             this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.Location = new System.Drawing.Point(354, 5);
+            this.button6.Location = new System.Drawing.Point(452, 5);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(91, 23);
             this.button6.TabIndex = 4;
@@ -230,7 +256,7 @@ namespace Searcher_A
             | System.Windows.Forms.AnchorStyles.Left)));
             this.button5.Image = global::Searcher_A.Properties.Resources.download;
             this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.Location = new System.Drawing.Point(228, 5);
+            this.button5.Location = new System.Drawing.Point(326, 5);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(120, 23);
             this.button5.TabIndex = 3;
@@ -511,7 +537,6 @@ namespace Searcher_A
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Web Sniffer";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.Move += new System.EventHandler(this.Form1_Move);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -573,11 +598,13 @@ namespace Searcher_A
         private System.Windows.Forms.ContextMenuStrip brow_context;
         private System.Windows.Forms.ToolStripMenuItem openInWebBrowserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openInWebBrowserToolStripMenuItem1;
-        private System.ComponentModel.BackgroundWorker drive_backgroundworker;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ToolStripMenuItem changelogsToolStripMenuItem;
+        public System.ComponentModel.BackgroundWorker drive_backgroundworker;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button button7;
     }
 }
 
