@@ -117,6 +117,9 @@ namespace Searcher_A
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.splitContainer1);
             this.groupBox2.Location = new System.Drawing.Point(325, 12);
             this.groupBox2.Name = "groupBox2";
@@ -176,12 +179,12 @@ namespace Searcher_A
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label2.Location = new System.Drawing.Point(9, 9);
+            this.label2.Location = new System.Drawing.Point(9, 7);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(263, 26);
+            this.label2.Size = new System.Drawing.Size(387, 26);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Link manager allows you to manage existing links. Click\r\nthe Add new link button " +
-    "to add a new link.";
+            this.label2.Text = "Link manager allows you to manage existing links. Click the Add new link button t" +
+    "o\r\nadd a new link.";
             // 
             // dataGridView1
             // 
@@ -274,7 +277,7 @@ namespace Searcher_A
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(15, 38);
+            this.checkBox2.Location = new System.Drawing.Point(15, 34);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(220, 17);
             this.checkBox2.TabIndex = 0;

@@ -107,7 +107,7 @@ namespace Searcher_A
             this.textBox1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.textBox1.Location = new System.Drawing.Point(51, 17);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(456, 21);
+            this.textBox1.Size = new System.Drawing.Size(504, 21);
             this.textBox1.TabIndex = 0;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
@@ -119,7 +119,7 @@ namespace Searcher_A
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(776, 284);
+            this.tabControl1.Size = new System.Drawing.Size(935, 293);
             this.tabControl1.TabIndex = 2;
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             this.tabControl1.Deselected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Deselected);
@@ -141,7 +141,7 @@ namespace Searcher_A
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 404);
+            this.splitContainer1.Size = new System.Drawing.Size(848, 413);
             this.splitContainer1.SplitterDistance = 55;
             this.splitContainer1.TabIndex = 4;
             // 
@@ -156,7 +156,7 @@ namespace Searcher_A
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Location = new System.Drawing.Point(9, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(782, 49);
+            this.groupBox1.Size = new System.Drawing.Size(941, 49);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Search";
@@ -164,7 +164,7 @@ namespace Searcher_A
             // textBox2
             // 
             this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(594, 17);
+            this.textBox2.Location = new System.Drawing.Point(642, 17);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(182, 21);
@@ -175,7 +175,7 @@ namespace Searcher_A
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Image = global::Searcher_A.Properties.Resources.search_field;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(513, 17);
+            this.button1.Location = new System.Drawing.Point(561, 17);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
@@ -193,7 +193,7 @@ namespace Searcher_A
             this.groupBox2.Controls.Add(this.splitContainer2);
             this.groupBox2.Location = new System.Drawing.Point(9, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(782, 339);
+            this.groupBox2.Size = new System.Drawing.Size(941, 348);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Browser";
@@ -220,7 +220,7 @@ namespace Searcher_A
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tabControl1);
-            this.splitContainer2.Size = new System.Drawing.Size(776, 319);
+            this.splitContainer2.Size = new System.Drawing.Size(935, 328);
             this.splitContainer2.SplitterDistance = 31;
             this.splitContainer2.TabIndex = 3;
             // 
@@ -310,9 +310,9 @@ namespace Searcher_A
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.status,
             this.toolStripProgressBar1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 428);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 437);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(848, 22);
             this.statusStrip1.TabIndex = 5;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -343,7 +343,7 @@ namespace Searcher_A
             this.changelogsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(848, 24);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -446,7 +446,7 @@ namespace Searcher_A
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 404);
+            this.panel1.Size = new System.Drawing.Size(848, 413);
             this.panel1.TabIndex = 7;
             // 
             // fileSystemWatcher1
@@ -525,7 +525,7 @@ namespace Searcher_A
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(848, 459);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
