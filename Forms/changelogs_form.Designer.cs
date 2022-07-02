@@ -37,13 +37,11 @@ namespace Searcher_A.Forms
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.richTextBox1);
-            this.groupBox1.Location = new System.Drawing.Point(6, 7);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(5, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(612, 336);
+            this.groupBox1.Size = new System.Drawing.Size(615, 339);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Logs";
@@ -54,7 +52,7 @@ namespace Searcher_A.Forms
             this.richTextBox1.Location = new System.Drawing.Point(3, 17);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(606, 316);
+            this.richTextBox1.Size = new System.Drawing.Size(609, 319);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             this.richTextBox1.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richTextBox1_LinkClicked);
@@ -71,6 +69,7 @@ namespace Searcher_A.Forms
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "changelogs_form";
+            this.Padding = new System.Windows.Forms.Padding(5);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Change Logs";
             this.Load += new System.EventHandler(this.changelogs_form_Load);

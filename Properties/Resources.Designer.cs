@@ -63,6 +63,66 @@ namespace Searcher_A.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _139 {
+            get {
+                object obj = ResourceManager.GetObject("139", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _8 {
+            get {
+                object obj = ResourceManager.GetObject("8", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _8_1_ {
+            get {
+                object obj = ResourceManager.GetObject("8(1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _8_2_ {
+            get {
+                object obj = ResourceManager.GetObject("8(2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap arrow_in {
+            get {
+                object obj = ResourceManager.GetObject("arrow_in", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap arrow_inout {
+            get {
+                object obj = ResourceManager.GetObject("arrow_inout", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap arrow_refresh {
             get {
                 object obj = ResourceManager.GetObject("arrow_refresh", resourceCulture);
@@ -141,11 +201,9 @@ namespace Searcher_A.Properties {
         ///	Added offline page button for primary browsers.
         ///	Offline button now opens up the correct offline page.
         ///	Fixed application paths. They are now centralized.
-        ///	Misc. bug fixes and optimizations.
-        ///
-        ///v2.0 Changelog - 
-        ///	
-        ///	Added functionality to upload offin [rest of string was truncated]&quot;;.
+        ///	Added reload button.
+        ///	Fixed file system watcher error when saving new pages.
+        ///	Searching for pa [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string changelog {
             get {
@@ -308,6 +366,26 @@ namespace Searcher_A.Properties {
         internal static System.Drawing.Bitmap search_field {
             get {
                 object obj = ResourceManager.GetObject("search_field", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap spinner_icon_12091 {
+            get {
+                object obj = ResourceManager.GetObject("spinner-icon-12091", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap spinner_icon_12091_Windows {
+            get {
+                object obj = ResourceManager.GetObject("spinner-icon-12091-Windows", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

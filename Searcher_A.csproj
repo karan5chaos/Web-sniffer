@@ -249,6 +249,14 @@
     <None Include="Resources\changelog.txt" />
     <None Include="Resources\raw_access_logs.png" />
     <None Include="Resources\arrow_refresh.png" />
+    <None Include="Resources\arrow_inout.png" />
+    <None Include="Resources\arrow_in.png" />
+    <None Include="Resources\spinner-icon-12091.gif" />
+    <None Include="Resources\spinner-icon-12091-Windows.ico" />
+    <None Include="Resources\139.gif" />
+    <None Include="Resources\8.gif" />
+    <None Include="Resources\8%281%29.gif" />
+    <None Include="Resources\8%282%29.gif" />
     <Content Include="script_save.ico" />
     <None Include="Resources\Cute-cat-meow-sound.wav" />
     <None Include="Resources\WebSnifferApplicationGuide.html" />

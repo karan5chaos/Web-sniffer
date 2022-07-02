@@ -52,9 +52,10 @@ namespace Searcher_A
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Location = new System.Drawing.Point(7, 3);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(5, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(353, 103);
+            this.groupBox1.Size = new System.Drawing.Size(357, 102);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Website Details";
@@ -144,6 +145,7 @@ namespace Searcher_A
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Add_new_website";
+            this.Padding = new System.Windows.Forms.Padding(5);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add new website";
             this.groupBox1.ResumeLayout(false);

@@ -58,10 +58,23 @@ namespace Searcher_A
                         string corrected_link = browser.Tag.ToString().Replace("*query*", query);
                         browser.Load(corrected_link);
 
+                        browser.FrameLoadStart += Browser_FrameLoadStart;
+                        browser.FrameLoadEnd += Browser_FrameLoadEnd;
                         //textBox2.Text = browser.ti
                     }
                 }
             }
+        }
+
+        bool picvis = false;
+        private void Browser_FrameLoadEnd(object sender, FrameLoadEndEventArgs e)
+        {
+            picvis = false;
+        }
+
+        private void Browser_FrameLoadStart(object sender, FrameLoadStartEventArgs e)
+        {
+            picvis = true;
         }
 
         void create_folder()
@@ -283,6 +296,8 @@ namespace Searcher_A
                 button6.Enabled = false;
                 button5.Enabled = true;
             }
+
+            pictureBox1.Visible = picvis;
         }
 
         public ChromiumWebBrowser get_browser(TabControl tabcontrol)

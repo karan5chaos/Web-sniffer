@@ -97,12 +97,13 @@ namespace Searcher_A
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label1.Location = new System.Drawing.Point(12, 17);
+            this.label1.MaximumSize = new System.Drawing.Size(298, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(265, 52);
+            this.label1.Size = new System.Drawing.Size(281, 52);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Unloads an unfocused page in background. This feature\r\nreduces memory consumption" +
-    " of the application.\r\nEnsure your device has sufficient memory before\r\ndisabling" +
-    " this setting.";
+            this.label1.Text = "Unloads an unfocused page in background. This feature reduces memory consumption " +
+    "of the application.\r\nEnsure your device has sufficient memory before disabling t" +
+    "his setting.";
             // 
             // checkBox1
             // 
@@ -454,6 +455,7 @@ namespace Searcher_A
             this.checkBox5.AutoSize = true;
             this.checkBox5.ForeColor = System.Drawing.Color.DarkRed;
             this.checkBox5.Location = new System.Drawing.Point(15, 20);
+            this.checkBox5.MaximumSize = new System.Drawing.Size(298, 0);
             this.checkBox5.Name = "checkBox5";
             this.checkBox5.Size = new System.Drawing.Size(275, 56);
             this.checkBox5.TabIndex = 0;
