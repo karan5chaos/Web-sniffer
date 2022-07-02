@@ -107,7 +107,7 @@ namespace Searcher_A
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.textBox1.Location = new System.Drawing.Point(61, 12);
+            this.textBox1.Location = new System.Drawing.Point(61, 14);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(496, 21);
             this.textBox1.TabIndex = 0;
