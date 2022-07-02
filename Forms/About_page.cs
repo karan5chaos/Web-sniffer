@@ -47,7 +47,7 @@ namespace Searcher_A
 
         private void About_page_Load(object sender, EventArgs e)
         {
-
+            label1.Text = "Web sniffer v" + Properties.Settings.Default.version;
         }
 
         private void button4_Click(object sender, EventArgs e)
