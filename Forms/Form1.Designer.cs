@@ -458,6 +458,7 @@ namespace Searcher_A
             this.changelogsToolStripMenuItem.Name = "changelogsToolStripMenuItem";
             this.changelogsToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
             this.changelogsToolStripMenuItem.Text = "Changelogs";
+            this.changelogsToolStripMenuItem.Visible = false;
             this.changelogsToolStripMenuItem.Click += new System.EventHandler(this.changelogsToolStripMenuItem_Click);
             // 
             // panel1

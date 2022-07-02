@@ -106,7 +106,6 @@ namespace Searcher_A
 
 
         string update_file_setup= "";
-        string update_file_msi = "";
         async Task check_for_updatesAsync()
         {
 
@@ -119,33 +118,25 @@ namespace Searcher_A
 
                 if (Properties.Settings.Default.version < Convert.ToDouble(latest.TagName))
                 {
-                    if (MessageBox.Show("A new update is available for download!\nDownload update?", "Update available", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                    if (MessageBox.Show("A new update is available for download!\nUpdate now??", "Update available", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                     {
                         WebClient webClient = new WebClient();
                         WebClient webClient2 = new WebClient();
 
                         var downlink0 = latest.Assets[0].BrowserDownloadUrl;
-                        var downlink1 = latest.Assets[1].BrowserDownloadUrl;
 
                         webClient.DownloadFileCompleted += WebClient_DownloadFileCompleted;
-                        webClient2.DownloadFileCompleted += WebClient2_DownloadFileCompleted;
 
 
                         update_file_setup = Properties.Settings.Default.save_path + "/" + latest.Assets[0].Name;
-                        update_file_msi = Properties.Settings.Default.save_path + "/" + "Web sniffer.msi";
 
-                        if (File.Exists(update_file_msi))
-                        {
-                            File.Delete(update_file_msi);
-
-                        }
+                      
                         if (File.Exists(update_file_setup))
                         {
                             File.Delete(update_file_setup);
                         }
 
                         await webClient.DownloadFileTaskAsync(new Uri(downlink0), update_file_setup);
-                        await webClient2.DownloadFileTaskAsync(new Uri(downlink1), update_file_msi);
                     }
                 }
             }
@@ -158,21 +149,17 @@ namespace Searcher_A
 
         private void WebClient2_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
-            if (setup_dn)
+           
+        }
+
+        private void WebClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            if (MessageBox.Show("The application will now close.", "App updater", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
             {
-                setup_dn = false;
                 Process.Start(update_file_setup);
                 this.Close();
             }
-        }
-
-
-        bool setup_dn = false;
-        private void WebClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
-        {
-
-            setup_dn = true;
-           // throw new NotImplementedException();
+            // throw new NotImplementedException();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -206,6 +193,7 @@ namespace Searcher_A
             }
 
         }
+
 
 
         public static void UnloadTabpage(TabControl tabcontrol)
@@ -277,8 +265,6 @@ namespace Searcher_A
         {
             new Offline_pages().Show();
         }
-
-        string offtxt = "Save for offline use";
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
