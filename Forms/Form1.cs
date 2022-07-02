@@ -105,16 +105,6 @@ namespace Searcher_A
         }
 
 
-        public class Download
-        {
-            public string browser_download_url
-            {
-                get;
-                set;
-            }
-        }
-
-
         string update_file_setup= "";
         string update_file_msi = "";
         async Task check_for_updatesAsync()
