@@ -32,5 +32,8 @@
     <Setting Name="auto_backup" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="version" Type="System.Double" Scope="Application">
+      <Value Profile="(Default)">4</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

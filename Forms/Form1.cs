@@ -25,6 +25,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Transitions;
 using static Google.Apis.Drive.v3.DriveService;
+using Octokit;
+using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace Searcher_A
 {
@@ -102,8 +105,89 @@ namespace Searcher_A
         }
 
 
+        public class Download
+        {
+            public string browser_download_url
+            {
+                get;
+                set;
+            }
+        }
+
+
+        string update_file_setup= "";
+        string update_file_msi = "";
+        async Task check_for_updatesAsync()
+        {
+
+            try
+            {
+                var client = new GitHubClient(new ProductHeaderValue("Web-sniffer"));
+
+                var releases = await client.Repository.Release.GetAll("karan5chaos", "Web-sniffer");
+                var latest = releases[0];
+
+                if (Properties.Settings.Default.version < Convert.ToDouble(latest.TagName))
+                {
+                    if (MessageBox.Show("A new update is available for download!\nDownload update?", "Update available", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                    {
+                        WebClient webClient = new WebClient();
+                        WebClient webClient2 = new WebClient();
+
+                        var downlink0 = latest.Assets[0].BrowserDownloadUrl;
+                        var downlink1 = latest.Assets[1].BrowserDownloadUrl;
+
+                        webClient.DownloadFileCompleted += WebClient_DownloadFileCompleted;
+                        webClient2.DownloadFileCompleted += WebClient2_DownloadFileCompleted;
+
+
+                        update_file_setup = Properties.Settings.Default.save_path + "/" + latest.Assets[0].Name;
+                        update_file_msi = Properties.Settings.Default.save_path + "/" + "Web sniffer.msi";
+
+                        if (File.Exists(update_file_msi))
+                        {
+                            File.Delete(update_file_msi);
+
+                        }
+                        if (File.Exists(update_file_setup))
+                        {
+                            File.Delete(update_file_setup);
+                        }
+
+                        await webClient.DownloadFileTaskAsync(new Uri(downlink0), update_file_setup);
+                        await webClient2.DownloadFileTaskAsync(new Uri(downlink1), update_file_msi);
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error while downloading update..\n" + ex.Message);            
+            }
+        }
+
+        private void WebClient2_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            if (setup_dn)
+            {
+                setup_dn = false;
+                Process.Start(update_file_setup);
+                this.Close();
+            }
+        }
+
+
+        bool setup_dn = false;
+        private void WebClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+
+            setup_dn = true;
+           // throw new NotImplementedException();
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            check_for_updatesAsync();
             track_change.page_saved = false;
 
             var settings = new CefSettings();
