@@ -393,6 +393,26 @@ namespace Searcher_A.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap telegram {
+            get {
+                object obj = ResourceManager.GetObject("telegram", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap telegram_1_ {
+            get {
+                object obj = ResourceManager.GetObject("telegram(1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap text_exports {
             get {
                 object obj = ResourceManager.GetObject("text_exports", resourceCulture);
@@ -406,6 +426,16 @@ namespace Searcher_A.Properties {
         internal static System.Drawing.Bitmap text_imports {
             get {
                 object obj = ResourceManager.GetObject("text_imports", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap whatsapp_1_ {
+            get {
+                object obj = ResourceManager.GetObject("whatsapp(1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

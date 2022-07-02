@@ -44,5 +44,22 @@ namespace Searcher_A
         {
             Process.Start("www.linkedin.com/in/karanpiprani");
         }
+
+        private void About_page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://t.me/Ka0593");
+        
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://wachat.link/karan");
+        }
     }
 }

@@ -257,6 +257,9 @@
     <None Include="Resources\8.gif" />
     <None Include="Resources\8%281%29.gif" />
     <None Include="Resources\8%282%29.gif" />
+    <None Include="Resources\telegram.png" />
+    <None Include="Resources\telegram%281%29.png" />
+    <None Include="Resources\whatsapp%281%29.png" />
     <Content Include="script_save.ico" />
     <None Include="Resources\Cute-cat-meow-sound.wav" />
     <None Include="Resources\WebSnifferApplicationGuide.html" />
