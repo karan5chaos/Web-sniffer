@@ -122,7 +122,7 @@ namespace Searcher_A
             this.button3.TabIndex = 12;
             this.button3.Text = "WhatsApp";
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.toolTip1.SetToolTip(this.button3, "Check out my LinkedIn!");
+            this.toolTip1.SetToolTip(this.button3, "Connect with me on WhatsApp");
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -136,7 +136,7 @@ namespace Searcher_A
             this.button4.TabIndex = 11;
             this.button4.Text = "Telegram";
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.toolTip1.SetToolTip(this.button4, "Say thanks or give me a feedback :)");
+            this.toolTip1.SetToolTip(this.button4, "Connect with me on Telegram");
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 

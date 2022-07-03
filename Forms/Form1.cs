@@ -396,11 +396,15 @@ namespace Searcher_A
             try
             {
                 string path = track_change.pages_path + RemoveInvalidFilePathCharacters(textBox2.Text,"-") + ".pdf";
+              //  string path2 = track_change.pages_path + RemoveInvalidFilePathCharacters(textBox2.Text, "-") + ".rtf";
 
-               
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
                 PrintToPdfAsync(path, get_browser(tabControl1));
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+
+                //var source = get_browser(tabControl1).GetTextAsync().Result;
+                //File.WriteAllText(path2, source);
+
 
                 status.Text = "Page downloaded for offline use..";
                 track_change.page_saved = true;
@@ -589,6 +593,18 @@ namespace Searcher_A
         private void button7_Click(object sender, EventArgs e)
         {
             get_browser(tabControl1).Reload();
+        }
+
+        private void searchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (splitContainer1.Panel1Collapsed)
+            {
+                splitContainer1.Panel1Collapsed = false;
+            }
+            else
+            {
+                splitContainer1.Panel1Collapsed = true;
+            }
         }
     }
 }

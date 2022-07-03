@@ -62,6 +62,7 @@ namespace Searcher_A
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changelogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -122,7 +123,7 @@ namespace Searcher_A
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(828, 286);
+            this.tabControl1.Size = new System.Drawing.Size(828, 282);
             this.tabControl1.TabIndex = 2;
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             this.tabControl1.Deselected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Deselected);
@@ -145,7 +146,7 @@ namespace Searcher_A
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(5);
-            this.splitContainer1.Size = new System.Drawing.Size(848, 413);
+            this.splitContainer1.Size = new System.Drawing.Size(848, 409);
             this.splitContainer1.SplitterDistance = 54;
             this.splitContainer1.TabIndex = 4;
             // 
@@ -195,7 +196,7 @@ namespace Searcher_A
             this.groupBox2.Location = new System.Drawing.Point(5, 5);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox2.Size = new System.Drawing.Size(838, 345);
+            this.groupBox2.Size = new System.Drawing.Size(838, 341);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Browser";
@@ -222,7 +223,7 @@ namespace Searcher_A
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tabControl1);
-            this.splitContainer2.Size = new System.Drawing.Size(828, 321);
+            this.splitContainer2.Size = new System.Drawing.Size(828, 317);
             this.splitContainer2.SplitterDistance = 31;
             this.splitContainer2.TabIndex = 3;
             // 
@@ -327,6 +328,7 @@ namespace Searcher_A
             // statusStrip1
             // 
             this.statusStrip1.Font = new System.Drawing.Font("Calibri", 8.25F);
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.status,
             this.toolStripProgressBar1});
@@ -353,7 +355,9 @@ namespace Searcher_A
             // 
             this.menuStrip1.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.menuStrip1.Font = new System.Drawing.Font("Calibri", 8.25F);
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.searchToolStripMenuItem,
             this.oflinePagesToolStripMenuItem,
             this.settingsToolStripMenuItem,
             this.connectionToolStripMenuItem,
@@ -363,7 +367,7 @@ namespace Searcher_A
             this.changelogsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(848, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(848, 28);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -372,7 +376,7 @@ namespace Searcher_A
             this.oflinePagesToolStripMenuItem.AutoToolTip = true;
             this.oflinePagesToolStripMenuItem.Image = global::Searcher_A.Properties.Resources.catalog_pages;
             this.oflinePagesToolStripMenuItem.Name = "oflinePagesToolStripMenuItem";
-            this.oflinePagesToolStripMenuItem.Size = new System.Drawing.Size(137, 20);
+            this.oflinePagesToolStripMenuItem.Size = new System.Drawing.Size(141, 24);
             this.oflinePagesToolStripMenuItem.Text = "Ofline pages manager";
             this.oflinePagesToolStripMenuItem.ToolTipText = "Manage your saved offline pages";
             this.oflinePagesToolStripMenuItem.Click += new System.EventHandler(this.oflinePagesToolStripMenuItem_Click);
@@ -381,7 +385,7 @@ namespace Searcher_A
             // 
             this.settingsToolStripMenuItem.Image = global::Searcher_A.Properties.Resources.cog;
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(75, 24);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
@@ -391,7 +395,7 @@ namespace Searcher_A
             this.connectionToolStripMenuItem.Image = global::Searcher_A.Properties.Resources.bullet_red;
             this.connectionToolStripMenuItem.Name = "connectionToolStripMenuItem";
             this.connectionToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.connectionToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
+            this.connectionToolStripMenuItem.Size = new System.Drawing.Size(92, 24);
             this.connectionToolStripMenuItem.Text = "Connection";
             // 
             // importExportToolStripMenuItem
@@ -403,14 +407,14 @@ namespace Searcher_A
             this.exportAllOfflinePagesTozipToolStripMenuItem});
             this.importExportToolStripMenuItem.Image = global::Searcher_A.Properties.Resources.document_import;
             this.importExportToolStripMenuItem.Name = "importExportToolStripMenuItem";
-            this.importExportToolStripMenuItem.Size = new System.Drawing.Size(101, 20);
+            this.importExportToolStripMenuItem.Size = new System.Drawing.Size(105, 24);
             this.importExportToolStripMenuItem.Text = "Import/Export";
             // 
             // importLinksToolStripMenuItem
             // 
             this.importLinksToolStripMenuItem.Image = global::Searcher_A.Properties.Resources.text_imports;
             this.importLinksToolStripMenuItem.Name = "importLinksToolStripMenuItem";
-            this.importLinksToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.importLinksToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.importLinksToolStripMenuItem.Text = "Import Links";
             this.importLinksToolStripMenuItem.Click += new System.EventHandler(this.importLinksToolStripMenuItem_Click);
             // 
@@ -418,20 +422,20 @@ namespace Searcher_A
             // 
             this.exportLinksToolStripMenuItem.Image = global::Searcher_A.Properties.Resources.text_exports;
             this.exportLinksToolStripMenuItem.Name = "exportLinksToolStripMenuItem";
-            this.exportLinksToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.exportLinksToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.exportLinksToolStripMenuItem.Text = "Export Links";
             this.exportLinksToolStripMenuItem.Click += new System.EventHandler(this.exportLinksToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(207, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(211, 6);
             // 
             // exportAllOfflinePagesTozipToolStripMenuItem
             // 
             this.exportAllOfflinePagesTozipToolStripMenuItem.Image = global::Searcher_A.Properties.Resources.file_extension_zip;
             this.exportAllOfflinePagesTozipToolStripMenuItem.Name = "exportAllOfflinePagesTozipToolStripMenuItem";
-            this.exportAllOfflinePagesTozipToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.exportAllOfflinePagesTozipToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.exportAllOfflinePagesTozipToolStripMenuItem.Text = "Export all offline pages to .zip";
             this.exportAllOfflinePagesTozipToolStripMenuItem.Click += new System.EventHandler(this.exportAllOfflinePagesTozipToolStripMenuItem_Click);
             // 
@@ -439,7 +443,7 @@ namespace Searcher_A
             // 
             this.aboutToolStripMenuItem.Image = global::Searcher_A.Properties.Resources.infocard;
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -447,7 +451,7 @@ namespace Searcher_A
             // 
             this.helpToolStripMenuItem.Image = global::Searcher_A.Properties.Resources.help;
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.Visible = false;
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
@@ -456,18 +460,27 @@ namespace Searcher_A
             // 
             this.changelogsToolStripMenuItem.Image = global::Searcher_A.Properties.Resources.raw_access_logs;
             this.changelogsToolStripMenuItem.Name = "changelogsToolStripMenuItem";
-            this.changelogsToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
+            this.changelogsToolStripMenuItem.Size = new System.Drawing.Size(93, 24);
             this.changelogsToolStripMenuItem.Text = "Changelogs";
             this.changelogsToolStripMenuItem.Visible = false;
             this.changelogsToolStripMenuItem.Click += new System.EventHandler(this.changelogsToolStripMenuItem_Click);
+            // 
+            // searchToolStripMenuItem
+            // 
+            this.searchToolStripMenuItem.Image = global::Searcher_A.Properties.Resources.search_field1;
+            this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
+            this.searchToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
+            this.searchToolStripMenuItem.Text = "Search";
+            this.searchToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.splitContainer1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 24);
+            this.panel1.Location = new System.Drawing.Point(0, 28);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(848, 413);
+            this.panel1.Size = new System.Drawing.Size(848, 409);
             this.panel1.TabIndex = 7;
             // 
             // fileSystemWatcher1
@@ -517,6 +530,7 @@ namespace Searcher_A
             // brow_context
             // 
             this.brow_context.Font = new System.Drawing.Font("Calibri", 8.25F);
+            this.brow_context.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.brow_context.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openInWebBrowserToolStripMenuItem,
             this.openInWebBrowserToolStripMenuItem1});
@@ -629,6 +643,7 @@ namespace Searcher_A
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
     }
 }
 

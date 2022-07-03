@@ -49,13 +49,13 @@ namespace Searcher_A
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deletePageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openPageExternallyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.uploadAndGetLinkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.chromiumWebBrowser1 = new CefSharp.WinForms.ChromiumWebBrowser();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -71,6 +71,10 @@ namespace Searcher_A
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -267,10 +271,9 @@ namespace Searcher_A
             this.contextMenuStrip1.Font = new System.Drawing.Font("Calibri", 8.25F);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deletePageToolStripMenuItem,
-            this.openPageExternallyToolStripMenuItem,
-            this.uploadAndGetLinkToolStripMenuItem});
+            this.openPageExternallyToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(180, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(180, 48);
             // 
             // deletePageToolStripMenuItem
             // 
@@ -287,16 +290,9 @@ namespace Searcher_A
             this.openPageExternallyToolStripMenuItem.Text = "Open page externally..";
             this.openPageExternallyToolStripMenuItem.Click += new System.EventHandler(this.openPageExternallyToolStripMenuItem_Click);
             // 
-            // uploadAndGetLinkToolStripMenuItem
-            // 
-            this.uploadAndGetLinkToolStripMenuItem.Name = "uploadAndGetLinkToolStripMenuItem";
-            this.uploadAndGetLinkToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
-            this.uploadAndGetLinkToolStripMenuItem.Text = "Upload and get link";
-            // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.chromiumWebBrowser1);
+            this.groupBox3.Controls.Add(this.splitContainer3);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(5, 5);
             this.groupBox3.Name = "groupBox3";
@@ -309,7 +305,7 @@ namespace Searcher_A
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label4.Location = new System.Drawing.Point(3, 17);
+            this.label4.Location = new System.Drawing.Point(9, 8);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(335, 13);
             this.label4.TabIndex = 1;
@@ -318,12 +314,10 @@ namespace Searcher_A
             // chromiumWebBrowser1
             // 
             this.chromiumWebBrowser1.ActivateBrowserOnCreation = false;
-            this.chromiumWebBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.chromiumWebBrowser1.Location = new System.Drawing.Point(6, 37);
+            this.chromiumWebBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chromiumWebBrowser1.Location = new System.Drawing.Point(0, 0);
             this.chromiumWebBrowser1.Name = "chromiumWebBrowser1";
-            this.chromiumWebBrowser1.Size = new System.Drawing.Size(491, 510);
+            this.chromiumWebBrowser1.Size = new System.Drawing.Size(497, 501);
             this.chromiumWebBrowser1.TabIndex = 0;
             // 
             // backgroundWorker1
@@ -344,6 +338,26 @@ namespace Searcher_A
             this.fileSystemWatcher1.SynchronizingObject = this;
             this.fileSystemWatcher1.Changed += new System.IO.FileSystemEventHandler(this.fileSystemWatcher1_Changed);
             this.fileSystemWatcher1.Created += new System.IO.FileSystemEventHandler(this.fileSystemWatcher1_Created);
+            // 
+            // splitContainer3
+            // 
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer3.IsSplitterFixed = true;
+            this.splitContainer3.Location = new System.Drawing.Point(3, 17);
+            this.splitContainer3.Name = "splitContainer3";
+            this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.label4);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.chromiumWebBrowser1);
+            this.splitContainer3.Size = new System.Drawing.Size(497, 533);
+            this.splitContainer3.SplitterDistance = 28;
+            this.splitContainer3.TabIndex = 4;
             // 
             // Offline_pages
             // 
@@ -377,8 +391,12 @@ namespace Searcher_A
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel1.PerformLayout();
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -404,11 +422,11 @@ namespace Searcher_A
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
-        private System.Windows.Forms.ToolStripMenuItem uploadAndGetLinkToolStripMenuItem;
         private System.Windows.Forms.Timer timer1;
         public System.Windows.Forms.GroupBox groupBox1;
         public System.Windows.Forms.DataGridView dataGridView1;
         public CefSharp.WinForms.ChromiumWebBrowser chromiumWebBrowser1;
         private System.IO.FileSystemWatcher fileSystemWatcher1;
+        private System.Windows.Forms.SplitContainer splitContainer3;
     }
 }

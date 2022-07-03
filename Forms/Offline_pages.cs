@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -6,6 +7,8 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +29,9 @@ namespace Searcher_A
 
         private void Offline_pages_Load(object sender, EventArgs e)
         {
-           
+            
+            
+
             //if(track_change.page_saved == false)
             fileSystemWatcher1.Path = track_change.pages_path;
 
@@ -66,6 +71,14 @@ namespace Searcher_A
                 if (dataGridView1.Rows.Count > 0 && datagrid.CurrentRow.Tag != null)
                 {
                     chromiumWebBrowser1.LoadUrlAsync(datagrid.CurrentRow.Tag.ToString());
+
+                    string rtffile = Properties.Settings.Default.pages_path + "/" + dataGridView1.CurrentRow.Cells[0].Value + ".rtf";
+
+                    //if (File.Exists(rtffile))
+                    //{
+                    //    richTextBoxPrintCtrl1.Rtf = File.ReadAllText(rtffile);
+                    //}
+                   
                 }
             }
             catch (Exception exc)
@@ -75,8 +88,35 @@ namespace Searcher_A
             }
         }
 
-        //bool search = false;
-        private void button1_Click(object sender, EventArgs e)
+        //Test method
+        //public void manipulatePdf(string outputFile, string highLightFile)
+        //{
+        //    PdfReader reader = new PdfReader(outputFile);
+
+        //    using (FileStream fs = new FileStream(highLightFile, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite))
+        //    {
+        //        using (PdfStamper stamper = new PdfStamper(reader, fs))
+        //        {
+        //            //Create a rectangle for the highlight. NOTE: Technically this isn't used but it helps with the quadpoint calculation
+        //            iTextSharp.text.Rectangle rect = new iTextSharp.text.Rectangle(60.6755f, 749.172f, 94.0195f, 735.3f);
+        //            //Create an array of quad points based on that rectangle. NOTE: The order below doesn't appear to match the actual spec but is what Acrobat produces
+        //            float[] quad = { rect.Left, rect.Bottom, rect.Right, rect.Bottom, rect.Left, rect.Top, rect.Right, rect.Top };
+
+        //            //Create our hightlight
+        //            PdfAnnotation highlight = PdfAnnotation.CreateMarkup(stamper.Writer, rect, null, PdfAnnotation.MARKUP_HIGHLIGHT, quad);
+
+        //            //Set the color
+        //            highlight.Color = iTextSharp.text.BaseColor.YELLOW;
+
+        //            //Add the annotation
+        //            stamper.AddAnnotation(highlight, 1);
+        //        }
+        //    }
+        //}
+        //Test Method
+
+    //bool search = false;
+    private void button1_Click(object sender, EventArgs e)
         {
             try
             {
@@ -245,6 +285,58 @@ namespace Searcher_A
             }
                 
             
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //manipulatePdf(dataGridView1.CurrentRow.Tag.ToString(), dataGridView1.CurrentRow.Tag.ToString());
+        }
+
+
+        //public class convert { 
+
+
+
+        public class Quotes
+        {
+            public string author
+            {
+                get;
+                set;
+            }
+            public string quote
+            {
+                get;
+                set;
+            }
+        }
+
+        //}
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void highlightToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           // richTextBoxPrintCtrl1.SelectionBackColor = Color.Yellow;
+        }
+
+        private void strikeoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           // richTextBoxPrintCtrl1.SelectionBullet = true;
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //string rtffile = Properties.Settings.Default.pages_path + "/" + dataGridView1.CurrentRow.Cells[0].Value + ".rtf";
+            //File.WriteAllText(rtffile, richTextBoxPrintCtrl1.Rtf);
         }
     }
 

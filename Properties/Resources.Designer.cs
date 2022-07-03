@@ -373,6 +373,16 @@ namespace Searcher_A.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap search_field1 {
+            get {
+                object obj = ResourceManager.GetObject("search_field1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap spinner_icon_12091 {
             get {
                 object obj = ResourceManager.GetObject("spinner-icon-12091", resourceCulture);
